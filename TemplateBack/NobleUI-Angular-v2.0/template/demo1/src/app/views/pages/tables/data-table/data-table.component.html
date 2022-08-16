@@ -1,0 +1,57 @@
+
+<nav class="page-breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a routerLink=".">Tables</a></li>
+    <li class="breadcrumb-item active" aria-current="page">Data table</li>
+  
+  </ol>
+</nav>
+ 
+
+ 
+<div class="row">
+  <div class="col-md-12 stretch-card">
+    <div class="card">
+      <div class="card-body">
+        <h6 class="card-title">Merchant</h6>
+        <div class="table-responsive">
+          <table id="dataTableExample" class="table">
+            <thead>
+              <tr>
+                
+                <th>Photo</th>
+                <th>Username</th>
+                <th>LegalName</th>
+                
+                <th>Country</th>
+                <th>Email</th>
+                <th>Telephone</th> 
+              </tr>   
+            </thead>   
+            <tbody *ngFor="let merchant of list, let i=index">
+  <tr >
+    
+    <td> 
+      <div class="image overflow-hidden ">
+        <img class="object-cover rounded-full h-36 w-36 " src={{merchant.photoLink}} alt="">
+    </div> 
+    
+    </td> 
+    <td> {{merchant.userName}} </td> 
+                
+    <td> {{merchant.legalName}} </td>
+    
+    <td> {{merchant.country}} </td> 
+    <td> {{merchant.email}} </td> 
+                
+                  <td> {{merchant.telephone}} </td>   
+  </tr>
+</tbody>
+            
+     
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
