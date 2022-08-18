@@ -14,12 +14,15 @@ export class NgxDatatableComponent implements OnInit {
   
   adresse:any='';
   
+allC:any;
   nom:any='';
   
   prenom:any='';
   dateOfBirth:any='';
   telephone:any='';
   list:any;
+  
+  id:any;
   action="";
 
   constructor(private adminService : AdminService) {
@@ -35,6 +38,9 @@ export class NgxDatatableComponent implements OnInit {
       this.photoLink = this.list.photoLink;
        
       this.nom=this.list.nom; 
+
+      
+      this.id=this.list.id; 
       
       this.prenom=this.list.prenom; 
       this.dateOfBirth= this.list.dateOfBirth;
@@ -63,5 +69,16 @@ export class NgxDatatableComponent implements OnInit {
     }
    
   } 
-  
+
+  getAllC(){
+    this.allC=this.adminService.getHosts();
+     }
+  deleteUser(id:any){
+    console.log("id"+ id);
+    this.adminService.deleteUser(id).subscribe(host=>{
+      this.getAllC();
+      location.reload();
+  })
+}
+
 }

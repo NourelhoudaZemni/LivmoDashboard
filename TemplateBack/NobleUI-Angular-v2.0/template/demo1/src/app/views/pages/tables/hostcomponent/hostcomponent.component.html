@@ -20,9 +20,12 @@
             <thead>
               <tr>
                 
-                <th>Photo</th>
-                <th>Username</th>
+                <th>Photo</th> 
                 <th>LegalName</th>
+                
+                <th>Type</th>
+                
+                <th>ETAT</th>
                 
                 <th>RNE</th>
                 
@@ -47,11 +50,11 @@
     </div> 
    
     </td> 
-    
-    <td> {{host.userName}} </td> 
+     
                 
     <td> {{host.legalName}} </td>
-    
+    <td>{{host.type}}</td>
+    <td>{{host.verified}}</td>
     <td>
 
       <ng-template #content let-c="close" let-d="dismiss">
@@ -114,9 +117,14 @@
                 
     <td> {{host.telephone}} </td>   
     <td>
-      <button class="w-4"(click)="onClick()" [ngClass]="action =='Disable' ?  'btn btn-outline-danger':'btn btn-outline-success' " > {{action}}</button>
  
-<button type="button" class="btn btn-outline-info">View </button>
+
+      
+      <button type="button" class="btn btn-outline-info" (click)="Verify(host.email)">V </button>
+      
+      <button type="button" class="btn btn-outline-info" (click)="NotVerify(host.email)">NV </button>
+
+      <button type="button" class="btn btn-outline-info">View </button>
  
     </td>
   </tr>

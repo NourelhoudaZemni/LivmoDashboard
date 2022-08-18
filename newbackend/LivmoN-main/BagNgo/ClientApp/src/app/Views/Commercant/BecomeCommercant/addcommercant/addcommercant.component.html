@@ -1,0 +1,1326 @@
+<div class="inline-flex overflow-hidden w-full relative flex-col justify-center text-center ">
+
+    <span class="text-center mt-32 "></span>
+    <span class="font-bold text-4xl leading-10 text-red-500 ">Become a Marchant</span>
+    <span class="font-bold text-xs leading-4 tracking-widest mb-3">Hi! we will help you become a Marchant. </span>
+    <app-steppercom [current]="step" [length]="isselected == 'Marchant' ? 5 : 5 " [labels]="getlabels()">
+    </app-steppercom>
+
+    <div *ngIf="step == 1" class="flex flex-col mt-14  ">
+        <h1 class="font-bold text-2xl leading-7">Choose the type of service you provide</h1>
+        <div class="flex flex-col mt-14 mb-14 items-center w-full">
+            <div class="grid grid-cols-3 gap-3 items-center mt-4 max-w-5xl w-full ml-24 cursor-pointer">
+                <button type="button"
+                    class=" flex flex-col rounded-xl bg-white px-4 py-1 shadow-xl items-center gap-4 w-[230px] h-36 justify-center "
+                    name="Transport" (click)="addStepTransport()">
+                    <img src="assets/img/car.png" class="mt-5" value="individual" />
+                    <span class="font-semibold text-base leading-5 cursor-pointer "> Transport </span>
+                </button>
+                <button type="button"
+                    class=" flex flex-col rounded-xl bg-white px-4 py-1 shadow-xl items-center gap-4 w-[230px] h-36 justify-center"
+                    name="Lodging" (click)="addStepLodging()">
+                    <img src="assets/img/bed.png" class="mt-5" />
+                    <span class="font-semibold text-base leading-5 cursor-pointer"> Lodging </span>
+                </button>
+                <button type="button"
+                    class=" flex flex-col rounded-xl bg-white px-4 py-1 shadow-xl justify-center  items-center gap-4 w-[230px] h-36"
+                    name="Restaurant" (click)="addStepRestaurant()">
+                    <img src="assets/img/fork.png" class="mt-5" />
+                    <span class="font-semibold text-base leading-5 cursor-pointer"> Restaurant</span>
+                </button>
+            </div>
+        </div>
+    </div>
+    <ng-container *ngIf="isselected =='Transport'" class="mb-24">
+        <div class="flex justify-center w-full">
+            <form [formGroup]="Form2Transport" *ngIf="step == 2">
+                <div class="mt-14 justify-center max-w-3xl w-full">
+                    <div class="grid grid-cols-2 gap-8 justify-center">
+                        <div class=" justify-center gap-12 mt-1 row-span-2">
+                            <img [src]="profilePicture ? profilePicture : 'assets/img/ImgDownload.png'" alt=""
+                                class="w-[150px] rounded-full" (click)="clickFakeUpload('UploadProfile')">
+                            <input type="file" class="opacity-0 pointer-events-none absolute" id="UploadProfile"
+                                (change)="uploadedFile($event,'profile')" />
+                        </div>
+                        <div class="flex flex-col items-start">
+                            <span class="font-semibold text-base leading-5 "> Company's Legal Name :</span>
+                            <div class=" rounded-lg bg-white px-4 py-1 shadow-md items-center w-full gap-4">
+                                <input type="text" name="legalName" formControlName="legalName"
+                                    class="outline-none w-full h-8" required>
+                            </div>
+                            <div *ngIf="legalNameT.invalid
+                                && (legalNameT.dirty || legalNameT.touched)">
+                                <span class="font-semibold text-xs leading-5 text-rose-500"
+                                    *ngIf="legalNameT.errors['required']">
+                                    Legal Name is Required !</span>
+                                <span class="font-semibold text-xs leading-5 text-rose-500"
+                                    *ngIf="legalNameT.errors['pattern']">
+                                    Only letters allowed !</span>
+                            </div>
+                        </div>
+                        <div class=" flex flex-col items-start">
+                            <span class="font-semibold text-base leading-5 "> Contact Person :</span>
+                            <div class=" rounded-lg bg-white px-4 py-1 shadow-md w-full items-center gap-4">
+                                <input type="text" formControlName="persAContact" class="outline-none w-full h-8">
+                            </div>
+                            <div *ngIf="persAContactT.invalid && (persAContactT.dirty || persAContactT.touched)">
+                                <span class="font-semibold text-xs leading-5 text-rose-500"
+                                    *ngIf="persAContactT.errors['required']">
+                                    Contact Person Name is Required !</span>
+                                <span class="font-semibold text-xs leading-5 text-rose-500"
+                                    *ngIf="persAContactT.errors['pattern']">
+                                    Only letters allowed !</span>
+                            </div>
+                        </div>
+                        <div class="flex flex-col items-start">
+                            <span class="font-semibold text-base leading-5 "> Phone Number :</span>
+                            <div class=" rounded-lg bg-white px-4 py-1 shadow-md flex items-center gap-4">
+                                <img src="assets/img/Phone.png " class="text-rose-500">
+                                <input type="text" formControlName="telephone"
+                                    class="form-control outline-none w-full h-8" placeholder="+xxx xxxxxxxx">
+                            </div>
+                            <div *ngIf="telephoneT.invalid && (telephoneT.dirty || telephoneT.touched)">
+                                <span class="font-semibold text-xs leading-5 text-rose-500"
+                                    *ngIf="telephoneT.errors['required']">
+                                    Company Number is Required !</span>
+                                <span class="font-semibold text-xs leading-5 text-rose-500"
+                                    *ngIf="telephoneT.errors['pattern']">
+                                    Format non Valid !</span>
+                            </div>
+                        </div>
+                        <div class="flex flex-col items-start">
+                            <span class="font-semibold text-base leading-5 "> Email :</span>
+                            <div class=" rounded-lg bg-white px-4 py-1 w-full shadow-md flex items-center gap-4">
+                                <img src="assets/img/Email.png " class="text-rose-500">
+                                <input type="text" class="form-control outline-none w-full h-8"
+                                    formControlName="email">
+                            </div>
+                            <div *ngIf="emailT.invalid
+                                    && (emailT.dirty || emailT.touched)">
+                                <span class="font-semibold text-xs leading-5 text-rose-500"
+                                    *ngIf="emailT.errors['required']">
+                                    Email is Required !</span>
+                                <span class="font-semibold text-xs leading-5 text-rose-500"
+                                    *ngIf="emailT.errors['pattern']">
+                                    Email is Invalid !</span>
+                            </div>
+                        </div>
+                        <div class="flex flex-col items-start">
+                            <span class="font-semibold text-base leading-5 "> Enter your Password :</span>
+                            <div class=" rounded-lg bg-white px-4 py-1 shadow-md flex items-center gap-4">
+                                <img src="assets/img/pass.png " class="text-rose-500">
+                                <input type="password" class="form-control outline-none h-8"
+                                    formControlName="password">
+                            </div>
+                            <div *ngIf="passwordT.invalid
+                                && (passwordT.dirty || passwordT.touched)">
+                                <div *ngIf="passwordT.errors['required'] "
+                                    class="font-semibold text-xs leading-5 text-rose-500"> Password is required !</div>
+                                <div *ngIf="passwordT.value" class="font-semibold text-xs leading-5"
+                                    [class]="!passwordHaveOrgTr('lowercase')?'text-red-500':'text-green-600'">
+                                    At least one lowercase !</div>
+                                <div *ngIf="passwordT.value" class="font-semibold text-xs leading-5"
+                                    [class]="!passwordHaveOrgTr('upercase')? 'text-red-500':'text-green-600'">
+                                    At least one uppercase !
+                                </div>
+                                <div *ngIf="passwordT.value" class="font-semibold text-xs leading-5"
+                                    [class]="!passwordHaveOrgTr('num')? 'text-red-500':'text-green-600'">
+                                    At least one numeric !
+                                </div>
+                                <div *ngIf=" passwordT.value" class="font-semibold text-xs leading-5"
+                                    [class]="!passwordHaveOrgTr('num')? 'text-red-500':'text-green-600'">
+                                    Minimum 8 characters !
+                                </div>
+                                <div *ngIf="passwordT.errors && passwordT.value"
+                                    [class]="!passwordHaveOrgTr('special')? 'text-red-500':'text-green-600'"
+                                    class="font-semibold text-xs leading-5 ">
+                                    Atleast a special character !
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="flex flex-col items-start">
+                            <span class="font-semibold text-base leading-5 "> Confirm your Password :</span>
+                            <div class=" rounded-lg bg-white px-4 py-1 shadow-md flex items-center w-full gap-4">
+                                <img src="assets/img/pass.png " class="text-rose-500">
+                                <input type="password" class="form-control outline-none  h-8"
+                                    formControlName="confirmPassword">
+                            </div>
+                            <div *ngIf="confirmPasswordT.value !== passwordT.value
+                                && (confirmPasswordT.dirty || confirmPasswordT.touched)">
+                                <span class="font-semibold text-xs leading-5 text-rose-500"> Mismatch Password !</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="flex justify-center w-full">
+            <form [formGroup]="Form3Transport" *ngIf="step == 3">
+                <div class="flex flex-col mt-14 justify-center">
+                    <div class="flex flex-row justify-center gap-12 mt-12">
+                        <div class="flex flex-col items-start">
+                            <span class="font-semibold text-base leading-5 "> Country :</span>
+                            <div class=" rounded-lg bg-white px-4 py-1 shadow-md flex items-center gap-4 mt-2">
+                                <input type="text" class="outline-none  h-8" formControlName="country">
+                            </div>
+                            <div *ngIf="countryT.invalid
+                                && (countryT.dirty || countryT.touched)">
+                                <span class="font-semibold text-xs leading-5 text-rose-500"
+                                    *ngIf="countryT.errors['required']">
+                                    Country is Required !</span>
+                            </div>
+                        </div>
+                        <div class="flex flex-col items-start">
+                            <span class="font-semibold text-base leading-5 "> Country :</span>
+                            <div
+                                class=" rounded-lg bg-white px-4 py-1 h-10 w-full  shadow-md flex items-center gap-4 mt-2">
+                                <p-dropdown [options]="countries" [(ngModel)]="selectedCountry" optionLabel="Name"
+                                    [filter]="true" filterBy="Name" [showClear]="true" placeholder="Select a Country"
+                                    formControlName="country">
+                                    <ng-template pTemplate="selectedItem">
+                                        <div class="country-item country-item-value flex gap-4 w-full "
+                                            *ngIf="selectedCountry">
+                                            <img [src]="selectedCountry.Image" alt="" class="w-8 rounded-md">
+                                            <div>{{selectedCountry.Name}}</div>
+                                        </div>
+                                    </ng-template>
+                                    <ng-template let-country pTemplate="item">
+                                        <div class="country-item flex gap-4">
+                                            <img [src]="country.Image" alt="" class="w-8 rounded-md">
+                                            <div>{{country.Name}}</div>
+                                        </div>
+                                    </ng-template>
+                                </p-dropdown>
+                            </div>
+                            <div *ngIf="countryT.invalid
+                                && (countryT.dirty || countryT.touched)">
+                                <span class="font-semibold text-xs leading-5 text-rose-500"
+                                    *ngIf="countryT.errors['required']">
+                                    Country is Required !</span>
+                            </div>
+                        </div>
+                        <div class="flex flex-col items-start">
+                            <span class="font-semibold text-base leading-5 "> Gouvernorate :</span>
+                            <div
+                                class=" rounded-lg bg-white px-4 py-1 shadow-md h-10 w-full flex items-center gap-4 mt-2">
+                                <p-dropdown [options]="countries" [(ngModel)]="selectedGouvernorate" optionLabel="Name"
+                                    [filter]="true" filterBy="Name" [showClear]="true"
+                                    placeholder="Select a Gouvernorate" formControlName="gouvernorate">
+                                    <ng-template pTemplate="selectedItem">
+                                        <div class="country-item country-item-value flex gap-4 w-full"
+                                            *ngIf="selectedCountry">
+                                            <img [src]="selectedCountry.Image" alt="" class="w-8 rounded-md">
+                                            <div>{{selectedCountry.Name}}</div>
+                                        </div>
+                                    </ng-template>
+                                    <ng-template let-country pTemplate="item">
+                                        <div class="country-item flex gap-4">
+                                            <img [src]="country.Image" alt="" class="w-8 rounded-md">
+                                            <div>{{country.Name}}</div>
+                                        </div>
+                                    </ng-template>
+                                </p-dropdown>
+                            </div>
+                            <div *ngIf="gouvernorateT.invalid
+                                && (gouvernorateT.dirty || gouvernorateT.touched)">
+                                <span class="font-semibold text-xs leading-5 text-rose-500"
+                                    *ngIf="gouvernorateT.errors['required']">
+                                    Gouvernorate is Required !</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flex flex-row justify-center gap-12 mt-8">
+                        <div class="flex flex-col items-start">
+                            <span class="font-semibold text-base leading-5 "> Adresse :</span>
+                            <div class=" rounded-lg bg-white px-8 h-10 py-3 shadow-md flex items-center gap-4 w-full ">
+                                <input type="text" formControlName="adresse"
+                                    class="form-control outline-none w-full h-8">
+                            </div>
+                            <div *ngIf="adresseT.invalid
+                                && (adresseT.dirty || adresseT.touched)">
+                                <span class="font-semibold text-xs leading-5 text-rose-500"
+                                    *ngIf="adresseT.errors['required']">
+                                    Adress is Required !</span>
+                            </div>
+                        </div>
+                        <div class="flex flex-col items-start">
+                            <span class="font-semibold text-base leading-5 "> ZIP Code :</span>
+                            <div class=" rounded-lg bg-white px-4 h-10 py-1 shadow-md flex items-center gap-4 w-full">
+                                <div class="field col-12 md:col-3 w-full">
+                                    <p-inputNumber [(ngModel)]="value20" mode="decimal" formControlName="zipCode"
+                                        [showButtons]="true" inputId="minmax-buttons" [min]="1" [max]="10000"
+                                        placeholder="xxxx">
+                                    </p-inputNumber>
+                                </div>
+
+                            </div>
+                            <div *ngIf="zipCodeT.invalid && (zipCodeT.dirty || zipCodeT.touched)">
+                                <span class="font-semibold text-xs leading-5 text-rose-500"
+                                    *ngIf="zipCodeT.errors['required'] && zipCodeT.value !=1">
+                                    ZIP Code is Required !</span>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="flex flex-row justify-center gap-12 mt-8">
+                        <div class="flex flex-col items-start">
+                            <span class="font-semibold text-base leading-5 w-full "> Male Workforce :</span>
+                            <div class=" rounded-lg bg-white px-4 py-1 shadow-md flex items-center gap-4 w-full">
+                                <div class="field col-12 md:col-3 w-full ">
+                                    <p-inputNumber [(ngModel)]="value21" mode="decimal"
+                                        formControlName="MaleWorkforce" [showButtons]="true"
+                                        inputId="minmax-buttons" [min]="1" [max]="10000">
+                                    </p-inputNumber>
+                                </div>
+
+                            </div>
+                            <div
+                                *ngIf="MaleWorkforceT.invalid && (MaleWorkforceT.dirty || MaleWorkforceT.touched)">
+                                <span class="font-semibold text-xs leading-5 text-rose-500"
+                                    *ngIf="MaleWorkforceT.errors['required']">
+                                    Male Workforce number is Required !</span>
+                            </div>
+                        </div>
+                        <div class="flex flex-col items-start">
+                            <span class="font-semibold text-base leading-5 "> Female Workfoce :</span>
+                            <div class=" rounded-lg bg-white px-4 py-1 shadow-md flex items-center gap-4 w-full">
+                                <div class="field col-12 md:col-3 w-full">
+                                    <p-inputNumber [(ngModel)]="value22" mode="decimal"
+                                        formControlName="FemaleWorkforce" [showButtons]="true"
+                                        inputId="minmax-buttons" [min]="1" [max]="10000">
+                                    </p-inputNumber>
+                                </div>
+
+                            </div>
+                            <div
+                                *ngIf="FemaleWorkforceT.invalid && (FemaleWorkforceT.dirty || FemaleWorkforceT.touched)">
+                                <span class="font-semibold text-xs leading-5 text-rose-500"
+                                    *ngIf="FemaleWorkforceT.errors['required']">
+                                    Female Workforce Number is Required !</span>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="flex justify-center w-full">
+            <form [formGroup]="Form4Transport" *ngIf="step ==4">
+                <div class="flex items-start gap-11 ">
+                    <div class="flex flex-col mt-14 mb-12 justify-start  ">
+                        <span class="flex ml-6 font-semibold text-base leading-5 "> Legal Status : </span>
+                        <div class="grid grid-cols-2 mt-3">
+                           <div class="flex flex-row gap-3 min-content"> 
+                            <input type="radio" name="legalStatus" class="accent-red-500 text-base ml-6 col-span-2 " value="SUARL" formControlName="legalStatus" [(ngModel)]="isselectedType"
+                                label="SUARL" />
+                                <span class="font-semibold text-base leading-5 justify-start "  > SUARL </span>
+                            </div>
+                            <div class="flex flex-row gap-3"> 
+                            <input type="radio" name="legalStatus" class="accent-red-500 text-base ml-6 col-span-2" value="SA" formControlName="legalStatus"
+                                label="" />
+                                <span class="font-semibold text-base leading-5 justify-start "> SA </span>
+                            </div>
+                            <div class="flex flex-row gap-3"> 
+                            <input type="radio" name="legalStatus" class="accent-red-500 text-base ml-6 col-span-2" value="SARL" formControlName="legalStatus"
+                                label="" /> 
+                                <span class="font-semibold text-base leading-5 justify-start mt-2 "  > SARL </span>        
+                            </div>
+                            <div class="flex flex-row gap-1"> 
+                            <input type="radio" name="legalStatus" class="accent-red-500 text-base ml-6 col-span-2" formControlName="legalStatus" value="Other"
+                                label="" /> 
+                                <div class=" rounded-lg bg-white px-4 py-1 shadow-md  items-center gap-4 w-full">
+                                    <input type="text" class="outline-none w-full h-8 text-black cursor-pointer "  [contentEditable]="false" 
+                                    readonly 
+                                    placeholder="Other">
+                                </div>
+                            </div>
+                            <div class="flex flex-row gap-3"> 
+                            <input type="radio" name="legalStatus" class="accent-red-500 text-base ml-6 col-span-2" value="SAS" formControlName="legalStatus"
+                                label="" /> 
+                                <span class="font-semibold text-base leading-5 justify-start " > SAS </span>                                 
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flex  mt-14 mb-12 justify-left ">
+                        <div class="grid grid-cols-2 gap-4 justify-start w-full">
+                            <div class="items-start col-span-2 w-full">
+                                <span class="flex flex-col font-semibold text-base leading-5 items-start "> Activity : </span>
+                                <div class=" rounded-lg bg-white px-4 py-1 shadow-md  items-center gap-4 w-full">
+                                    <p-dropdown  [editable]="true" optionLabel="name" class="flex w-full" formControlName="basicActivity"></p-dropdown>
+                                </div>
+
+                        </div>
+                            <div class="items-start grid mt-3">
+                                <div class=" flex flex-col items-start w-full">
+                                    <span class="font-semibold text-base leading-5 "> CNSS Affiliation Number :</span>
+                                    <div class=" rounded-lg bg-white px-4 py-1 shadow-md  items-center gap-4 w-full">
+                                        <input type="text" class="outline-none w-full h-8" formControlName="numCnss">
+                                    </div>
+                                </div>
+                                <div *ngIf="numCnssT.invalid && (numCnssT.dirty || numCnssT.touched)">
+                                    <span class="font-semibold text-xs leading-5 text-rose-500"
+                                        *ngIf="numCnssT.errors['required']">
+                                        CNSS Number is Required !</span>
+                                    <span class="font-semibold text-xs leading-5 text-rose-500"
+                                        *ngIf="numCnssT.errors['pattern']">
+                                        Only Numbers Allowed !</span>
+                                </div>
+                            </div>
+                            <div class="items-start grid mt-3">
+                                <div class=" flex flex-col items-start w-full">
+                                    <span class="font-semibold text-base leading-5 "> Tax Registration Number :</span>
+                                    <div class=" rounded-lg bg-white px-4 py-1 shadow-md  items-center gap-4 w-full">
+                                        <input type="text" class="outline-none w-full h-8" formControlName="taxNum">
+                                    </div>
+                                </div>
+                                <div *ngIf="taxNumT.invalid && (taxNumT.dirty || taxNumT.touched)">
+                                    <span class="font-semibold text-xs leading-5 text-rose-500"
+                                        *ngIf="taxNumT.errors['required']">
+                                        Tax Number is Required !</span>
+                                    <span class="font-semibold text-xs leading-5 text-rose-500"
+                                        *ngIf="taxNumT.errors['pattern']">
+                                        Only Numbers Allowed !</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="flex justify-center w-full">
+            <form [formGroup]="Form5Transport" *ngIf="step == 5">
+                <div class="flex flex-col mt-14 mb-12 justify-start ">
+                    <div class="grid grid-row-2 gap-4 justify-start ">
+                        <div class="items-start">
+                            <span class="font-semibold text-base leading-5 "> Add Copy of your Licence : </span>
+                            <div class="rounded-lg bg-white shadow-md h-10 flex items-center gap-4 mt-2">
+                                <div class=" bg-gray-400 h-full text-gray-500 flex justify-start items-center cursor-pointer w-1/4 rounded-md px-5 "
+                                    (click)="clickFakeUpload('UploadIdF')">FILE</div>
+                                <input type="file" class="opacity-0 pointer-events-none absolute w-full " id="UploadIdF"
+                                    (change)="uploadedFile($event,'CopyIdFile')" />
+                                <input type="text" class="outline-none  rounded-md w-full" placeholder="File" readonly
+                                    [(ngModel)]="CopyIdFile.name" formControlName="licenceCopy">
+                            </div>
+                            <div class="flex w-[10] leading-3 mt-1">
+                                <span> Supported files: pdf, jpeg, xls ...</span>
+                            </div>
+                            <div *ngIf="licenceCopyT.invalid
+                            && (licenceCopyT.dirty || licenceCopyT.touched)">
+                                <span class="font-semibold text-xs leading-5 text-rose-500"
+                                    *ngIf="licenceCopyT.errors['required']">
+                                    Licence is Required !</span>
+                            </div>
+                        </div>
+                        <div class="items-start">
+                            <span class="font-semibold text-base leading-5 items-start"> Add Copy of your RNE : </span>
+                            <div class="rounded-lg bg-white shadow-md flex  h-10 items-center gap-4 mt-2">
+                                <div class=" bg-gray-400 h-full text-gray-500 flex justify-start items-center cursor-pointer w-1/4 rounded-md px-5 "
+                                    (click)="clickFakeUpload('UploadIdRNE')">FILE</div>
+                                <input type="file" class="opacity-0 pointer-events-none absolute w-full py-4"
+                                    id="UploadIdRNE" (change)="uploadedFile($event,'CopyIdFile3')" />
+                                <input type="text" class="outline-none rounded-md w-full" placeholder="File" readonly
+                                    [(ngModel)]="CopyIdFile3.name" formControlName="rneCopy">
+                            </div>
+                            <div class="flex w-[10] leading-3 mt-1">
+                                <span> Supported files: pdf, jpeg, xls ...</span>
+                            </div>
+                            <div *ngIf="rneCopyT.invalid
+                                     && (rneCopyT.dirty || rneCopyT.touched)">
+                                <span class="font-semibold text-xs leading-5 text-rose-500"
+                                    *ngIf="rneCopyT.errors['required']">
+                                    RNE is Required !</span>
+                            </div>
+                        </div>
+                        <div class="items-start">
+                            <span class="font-semibold text-base leading-5 items-start"> CAD Tourist Transport : </span>
+                            <div class="rounded-lg bg-white shadow-md flex  h-10 items-center gap-4 mt-2">
+                                <div class=" bg-gray-400 h-full text-gray-500 flex justify-start items-center cursor-pointer w-1/4 rounded-md px-5 "
+                                    (click)="clickFakeUpload('UplaodCAD')">FILE</div>
+                                <input type="file" class="opacity-0 pointer-events-none absolute w-full py-4"
+                                    id="UplaodCAD" (change)="uploadedFile($event,'CopyIdFile2')" />
+                                <input type="text" class="outline-none rounded-md w-full" placeholder="File" readonly
+                                    [(ngModel)]="CopyIdFile2.name" formControlName="cadTouristTraansp">
+                            </div>
+                            <div class="flex w-[10] leading-3 mt-1">
+                                <span> Supported files: pdf, jpeg, xls ...</span>
+                            </div>
+                            <div *ngIf="cadTouristTraanspT.invalid
+                                     && (cadTouristTraanspT.dirty || cadTouristTraanspT.touched)">
+                                <span class="font-semibold text-xs leading-5 text-rose-500"
+                                    *ngIf="cadTouristTraanspT.errors['required']">
+                                    CAD is Required !</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </ng-container>
+    <ng-container *ngIf="isselected =='Lodging'" class="mb-24">
+        <div class="flex justify-center w-full">
+            <form [formGroup]="Form2Lodging" *ngIf="step == 2">
+                <div class="mt-14 justify-center max-w-3xl w-full">
+                    <div class="grid grid-cols-2 gap-8 justify-center">
+                        <div class=" justify-center gap-12 mt-1 row-span-2">
+                            <img [src]="profilePicture ? profilePicture : 'assets/img/ImgDownload.png'" alt=""
+                                class="w-[150px] rounded-full" (click)="clickFakeUpload('UploadProfile')">
+                            <input type="file" class="opacity-0 pointer-events-none absolute" id="UploadProfile"
+                                (change)="uploadedFile($event,'profile')" />
+                        </div>
+                        <div class="flex flex-col items-start">
+                            <span class="font-semibold text-base leading-5 "> Company's Legal Name :</span>
+                            <div class=" rounded-lg bg-white px-4 py-1 shadow-md items-center w-full gap-4">
+                                <input type="text" name="legalName" formControlName="legalName"
+                                    class="outline-none w-full h-8" required>
+                            </div>
+                            <div *ngIf="legalNameL.invalid
+                                && (legalNameL.dirty || legalNameL.touched)">
+                                <span class="font-semibold text-xs leading-5 text-rose-500"
+                                    *ngIf="legalNameL.errors['required']">
+                                    Legal Name is Required !</span>
+                                <span class="font-semibold text-xs leading-5 text-rose-500"
+                                    *ngIf="legalNameL.errors['pattern']">
+                                    Only letters allowed !</span>
+                            </div>
+                        </div>
+                        <div class=" flex flex-col items-start">
+                            <span class="font-semibold text-base leading-5 "> Contact Person :</span>
+                            <div class=" rounded-lg bg-white px-4 py-1 shadow-md w-full items-center gap-4">
+                                <input type="text" formControlName="persAContact" class="outline-none w-full h-8">
+                            </div>
+                            <div *ngIf="persAContactL.invalid && (persAContactL.dirty || persAContactL.touched)">
+                                <span class="font-semibold text-xs leading-5 text-rose-500"
+                                    *ngIf="persAContactL.errors['required']">
+                                    Contact Person Name is Required !</span>
+                                <span class="font-semibold text-xs leading-5 text-rose-500"
+                                    *ngIf="persAContactL.errors['pattern']">
+                                    Only letters allowed !</span>
+                            </div>
+                        </div>
+                        <div class="flex flex-col items-start">
+                            <span class="font-semibold text-base leading-5 "> Phone Number :</span>
+                            <div class=" rounded-lg bg-white px-4 py-1 shadow-md flex items-center gap-4">
+                                <img src="assets/img/Phone.png " class="text-rose-500">
+                                <input type="text" formControlName="telephone"
+                                    class="form-control outline-none w-full h-8" placeholder="+xxx xxxxxxxx">
+                            </div>
+                            <div *ngIf="telephoneL.invalid && (telephoneL.dirty || telephoneL.touched)">
+                                <span class="font-semibold text-xs leading-5 text-rose-500"
+                                    *ngIf="telephoneL.errors['required']">
+                                    Company Number is Required !</span>
+                                <span class="font-semibold text-xs leading-5 text-rose-500"
+                                    *ngIf="telephoneL.errors['pattern']">
+                                    Format non Valid !</span>
+                            </div>
+                        </div>
+                        <div class="flex flex-col items-start">
+                            <span class="font-semibold text-base leading-5 "> Email :</span>
+                            <div class=" rounded-lg bg-white px-4 py-1 w-full shadow-md flex items-center gap-4">
+                                <img src="assets/img/Email.png " class="text-rose-500">
+                                <input type="text" class="form-control outline-none w-full h-8"
+                                    formControlName="email">
+                            </div>
+                            <div *ngIf="emailL.invalid
+                                    && (emailL.dirty || emailL.touched)">
+                                <span class="font-semibold text-xs leading-5 text-rose-500"
+                                    *ngIf="emailL.errors['required']">
+                                    Email is Required !</span>
+                                <span class="font-semibold text-xs leading-5 text-rose-500"
+                                    *ngIf="emailL.errors['pattern']">
+                                    Email is Invalid !</span>
+                            </div>
+                        </div>
+                        <div class="flex flex-col items-start">
+                            <span class="font-semibold text-base leading-5 "> Enter your Password :</span>
+                            <div class=" rounded-lg bg-white px-4 py-1 shadow-md flex items-center gap-4">
+                                <img src="assets/img/pass.png " class="text-rose-500">
+                                <input type="password" class="form-control outline-none h-8"
+                                    formControlName="password">
+                            </div>
+                            <div *ngIf="passwordL.invalid
+                                && (passwordL.dirty || passwordL.touched)">
+                                <div *ngIf="passwordL.errors['required'] "
+                                    class="font-semibold text-xs leading-5 text-rose-500"> Password is required !</div>
+                                <div *ngIf="passwordL.value" class="font-semibold text-xs leading-5"
+                                    [class]="!passwordHaveOrgLo('lowercase')?'text-red-500':'text-green-600'">
+                                    At least one lowercase !</div>
+                                <div *ngIf="passwordL.value" class="font-semibold text-xs leading-5"
+                                    [class]="!passwordHaveOrgLo('upercase')? 'text-red-500':'text-green-600'">
+                                    At least one uppercase !
+                                </div>
+                                <div *ngIf="passwordL.value" class="font-semibold text-xs leading-5"
+                                    [class]="!passwordHaveOrgLo('num')? 'text-red-500':'text-green-600'">
+                                    At least one numeric !
+                                </div>
+                                <div *ngIf=" passwordL.value" class="font-semibold text-xs leading-5"
+                                    [class]="!passwordHaveOrgLo('num')? 'text-red-500':'text-green-600'">
+                                    Minimum 8 characters !
+                                </div>
+                                <div *ngIf="passwordL.errors && passwordL.value"
+                                    [class]="!passwordHaveOrgLo('special')? 'text-red-500':'text-green-600'"
+                                    class="font-semibold text-xs leading-5 ">
+                                    Atleast a special character !
+                                </div>
+                            </div>
+                        </div>
+                        <div class="flex flex-col items-start">
+                            <span class="font-semibold text-base leading-5 "> Confirm your Password :</span>
+                            <div class=" rounded-lg bg-white px-4 py-1 shadow-md flex items-center w-full gap-4">
+                                <img src="assets/img/pass.png " class="text-rose-500">
+                                <input type="password" class="form-control outline-none  h-8"
+                                    formControlName="confirmPassword">
+                            </div>
+                            <div *ngIf="confirmPasswordL.value !== passwordL.value
+                                && (confirmPasswordL.dirty || confirmPasswordL.touched)">
+                                <span class="font-semibold text-xs leading-5 text-rose-500"> Mismatch Password !</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="flex justify-center w-full">
+            <form [formGroup]="Form3Lodging" *ngIf="step == 3">
+                <div class="flex flex-col mt-14 justify-center">
+                    <div class="flex flex-row justify-center gap-12 mt-12">
+                        <div class="flex flex-col items-start">
+                            <span class="font-semibold text-base leading-5 "> Country :</span>
+                            <div class=" rounded-lg bg-white px-4 py-1 shadow-md flex items-center gap-4 mt-2">
+                                <input type="text" class="outline-none  h-8" formControlName="country">
+                            </div>
+                            <div *ngIf="countryL.invalid
+                                && (countryL.dirty || countryL.touched)">
+                                <span class="font-semibold text-xs leading-5 text-rose-500"
+                                    *ngIf="countryL.errors['required']">
+                                    Country is Required !</span>
+                            </div>
+                        </div>
+                        <div class="flex flex-col items-start">
+                            <span class="font-semibold text-base leading-5 "> Country :</span>
+                            <div
+                                class=" rounded-lg bg-white px-4 py-1 h-10 w-full  shadow-md flex items-center gap-4 mt-2">
+                                <p-dropdown [options]="countries" [(ngModel)]="selectedCountry" optionLabel="Name"
+                                    [filter]="true" filterBy="Name" [showClear]="true" placeholder="Select a Country"
+                                    formControlName="country">
+                                    <ng-template pTemplate="selectedItem">
+                                        <div class="country-item country-item-value flex gap-4 w-full "
+                                            *ngIf="selectedCountry">
+                                            <img [src]="selectedCountry.Image" alt="" class="w-8 rounded-md">
+                                            <div>{{selectedCountry.Name}}</div>
+                                        </div>
+                                    </ng-template>
+                                    <ng-template let-country pTemplate="item">
+                                        <div class="country-item flex gap-4">
+                                            <img [src]="country.Image" alt="" class="w-8 rounded-md">
+                                            <div>{{country.Name}}</div>
+                                        </div>
+                                    </ng-template>
+                                </p-dropdown>
+                            </div>
+                            <div *ngIf="countryL.invalid
+                                && (countryL.dirty || countryL.touched)">
+                                <span class="font-semibold text-xs leading-5 text-rose-500"
+                                    *ngIf="countryL.errors['required']">
+                                    Country is Required !</span>
+                            </div>
+                        </div>
+                        <div class="flex flex-col items-start">
+                            <span class="font-semibold text-base leading-5 "> Gouvernorate :</span>
+                            <div
+                                class=" rounded-lg bg-white px-4 py-1 shadow-md h-10 w-full flex items-center gap-4 mt-2">
+                                <p-dropdown [options]="countries" [(ngModel)]="selectedGouvernorate" optionLabel="Name"
+                                    [filter]="true" filterBy="Name" [showClear]="true"
+                                    placeholder="Select a Gouvernorate" formControlName="gouvernorate">
+                                    <ng-template pTemplate="selectedItem">
+                                        <div class="country-item country-item-value flex gap-4 w-full"
+                                            *ngIf="selectedCountry">
+                                            <img [src]="selectedCountry.Image" alt="" class="w-8 rounded-md">
+                                            <div>{{selectedCountry.Name}}</div>
+                                        </div>
+                                    </ng-template>
+                                    <ng-template let-country pTemplate="item">
+                                        <div class="country-item flex gap-4">
+                                            <img [src]="country.Image" alt="" class="w-8 rounded-md">
+                                            <div>{{country.Name}}</div>
+                                        </div>
+                                    </ng-template>
+                                </p-dropdown>
+                            </div>
+                            <div *ngIf="gouvernorateL.invalid
+                                && (gouvernorateL.dirty || gouvernorateL.touched)">
+                                <span class="font-semibold text-xs leading-5 text-rose-500"
+                                    *ngIf="gouvernorateL.errors['required']">
+                                    Gouvernorate is Required !</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flex flex-row justify-center gap-12 mt-8">
+                        <div class="flex flex-col items-start">
+                            <span class="font-semibold text-base leading-5 "> Adresse :</span>
+                            <div class=" rounded-lg bg-white px-8 h-10 py-3 shadow-md flex items-center gap-4 w-full ">
+                                <input type="text" formControlName="adresse"
+                                    class="form-control outline-none w-full h-8">
+                            </div>
+                            <div *ngIf="adresseL.invalid
+                                && (adresseL.dirty || adresseL.touched)">
+                                <span class="font-semibold text-xs leading-5 text-rose-500"
+                                    *ngIf="adresseL.errors['required']">
+                                    Adress is Required !</span>
+                            </div>
+                        </div>
+                        <div class="flex flex-col items-start">
+                            <span class="font-semibold text-base leading-5 "> ZIP Code :</span>
+                            <div class=" rounded-lg bg-white px-4 h-10 py-1 shadow-md flex items-center gap-4 w-full">
+                                <div class="field col-12 md:col-3 w-full">
+                                    <p-inputNumber [(ngModel)]="value20" mode="decimal" formControlName="zipCode"
+                                        [showButtons]="true" inputId="minmax-buttons" [min]="1" [max]="10000"
+                                        placeholder="xxxx">
+                                    </p-inputNumber>
+                                </div>
+
+                            </div>
+                            <div *ngIf="zipCodeL.invalid && (zipCodeL.dirty || zipCodeL.touched)">
+                                <span class="font-semibold text-xs leading-5 text-rose-500"
+                                    *ngIf="zipCodeL.errors['required'] && zipCodeL.value !=1">
+                                    ZIP Code is Required !</span>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="flex flex-row justify-center gap-12 mt-8">
+                        <div class="flex flex-col items-start">
+                            <span class="font-semibold text-base leading-5 w-full "> Male Workforce :</span>
+                            <div class=" rounded-lg bg-white px-4 py-1 shadow-md flex items-center gap-4 w-full">
+                                <div class="field col-12 md:col-3 w-full ">
+                                    <p-inputNumber [(ngModel)]="value21" mode="decimal"
+                                        formControlName="MaleWorkforce" [showButtons]="true"
+                                        inputId="minmax-buttons" [min]="1" [max]="10000">
+                                    </p-inputNumber>
+                                </div>
+
+                            </div>
+                            <div
+                                *ngIf="MaleWorkforceL.invalid && (MaleWorkforceL.dirty || MaleWorkforceL.touched)">
+                                <span class="font-semibold text-xs leading-5 text-rose-500"
+                                    *ngIf="MaleWorkforceL.errors['required']">
+                                    Male Workforce number is Required !</span>
+                            </div>
+                        </div>
+                        <div class="flex flex-col items-start">
+                            <span class="font-semibold text-base leading-5 "> Female Workfoce :</span>
+                            <div class=" rounded-lg bg-white px-4 py-1 shadow-md flex items-center gap-4 w-full">
+                                <div class="field col-12 md:col-3 w-full">
+                                    <p-inputNumber [(ngModel)]="value22" mode="decimal"
+                                        formControlName="FemaleWorkforce" [showButtons]="true"
+                                        inputId="minmax-buttons" [min]="1" [max]="10000">
+                                    </p-inputNumber>
+                                </div>
+
+                            </div>
+                            <div
+                                *ngIf="FemaleWorkforceL.invalid && (FemaleWorkforceL.dirty || FemaleWorkforceL.touched)">
+                                <span class="font-semibold text-xs leading-5 text-rose-500"
+                                    *ngIf="FemaleWorkforceL.errors['required']">
+                                    Female Workforce Number is Required !</span>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="flex justify-center w-full">
+            <form [formGroup]="Form4Lodging" *ngIf="step ==4">
+                <div class="flex items-start gap-11 ">
+                    <div class="flex flex-col mt-14 mb-12 justify-start  ">
+                        <span class="flex ml-6 font-semibold text-base leading-5 "> Legal Status : </span>
+                        <div class="grid grid-cols-2 mt-3">
+                           <div class="flex flex-row gap-3 min-content"> 
+                            <input type="radio" name="legalStatus" class="accent-red-500 text-base ml-6 col-span-2 " value="SUARL" 
+                            formControlName="legalStatus" [(ngModel)]="isselectedType"
+                                label="SUARL" />
+                                <span class="font-semibold text-base leading-5 justify-start" > SUARL </span>
+                            </div>
+                            <div class="flex flex-row gap-3"> 
+                            <input type="radio" name="legalStatus" class="accent-red-500 text-base ml-6 col-span-2" value="SA" formControlName="legalStatus"
+                                label="" />
+                                <span class="font-semibold text-base leading-5 justify-start "> SA </span>
+                            </div>
+                            <div class="flex flex-row gap-3"> 
+                            <input type="radio" name="legalStatus" class="accent-red-500 text-base ml-6 col-span-2" value="SARL" formControlName="legalStatus"
+                                label="" /> 
+                                <span class="font-semibold text-base leading-5 justify-start mt-2 "  > SARL </span>        
+                            </div>
+                            <div class="flex flex-row gap-1"> 
+                            <input type="radio" name="legalStatus" class="accent-red-500 text-base ml-6 col-span-2" formControlName="legalStatus" value="Other"
+                                label="" /> 
+                                <div class=" rounded-lg bg-white px-4 py-1 shadow-md  items-center gap-4 w-full">
+                                    <input type="text" class="outline-none w-full h-8 text-black cursor-pointer "  [contentEditable]="false" 
+                                    readonly 
+                                    placeholder="Other">
+                                </div>
+                            </div>
+                            <div class="flex flex-row gap-3"> 
+                            <input type="radio" name="legalStatus" class="accent-red-500 text-base ml-6 col-span-2" value="SAS" formControlName="legalStatus"
+                                label="" /> 
+                                <span class="font-semibold text-base leading-5 justify-start " > SAS </span>                                 
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flex  mt-14 mb-12 justify-left ">
+                        <div class="grid grid-cols-2 gap-4 justify-start w-full">
+                            <div class="items-start col-span-2 w-full">
+                                <span class="flex flex-col font-semibold text-base leading-5 items-start"> Activity : </span>
+                                <div class=" rounded-lg bg-white px-4 py-1 shadow-md  items-center gap-4 w-full">
+                                    <p-dropdown  [editable]="true" optionLabel="name" class="flex w-full" formControlName="basicActivity"></p-dropdown>
+                                </div>
+
+                        </div>
+                            <div class="items-start grid mt-3">
+                                <div class=" flex flex-col items-start w-full">
+                                    <span class="font-semibold text-base leading-5 "> CNSS Affiliation Number :</span>
+                                    <div class=" rounded-lg bg-white px-4 py-1 shadow-md  items-center gap-4 w-full">
+                                        <input type="text" class="outline-none w-full h-8" formControlName="numCnss">
+                                    </div>
+                                </div>
+                                <div *ngIf="numCnssL.invalid && (numCnssL.dirty || numCnssL.touched)">
+                                    <span class="font-semibold text-xs leading-5 text-rose-500"
+                                        *ngIf="numCnssL.errors['required']">
+                                        CNSS Number is Required !</span>
+                                    <span class="font-semibold text-xs leading-5 text-rose-500"
+                                        *ngIf="numCnssL.errors['pattern']">
+                                        Only Numbers Allowed !</span>
+                                </div>
+                            </div>
+                            <div class="items-start grid mt-3">
+                                <div class=" flex flex-col items-start w-full">
+                                    <span class="font-semibold text-base leading-5 "> Tax Registration Number :</span>
+                                    <div class=" rounded-lg bg-white px-4 py-1 shadow-md  items-center gap-4 w-full">
+                                        <input type="text" class="outline-none w-full h-8" formControlName="taxNum">
+                                    </div>
+                                </div>
+                                <div *ngIf="taxNumL.invalid && (taxNumL.dirty || taxNumL.touched)">
+                                    <span class="font-semibold text-xs leading-5 text-rose-500"
+                                        *ngIf="taxNumL.errors['required']">
+                                        Tax Number is Required !</span>
+                                    <span class="font-semibold text-xs leading-5 text-rose-500"
+                                        *ngIf="taxNumL.errors['pattern']">
+                                        Only Numbers Allowed !</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="flex justify-center w-full">
+            <form [formGroup]="Form5Lodging" *ngIf="step == 5">
+                <div class="flex flex-col mt-14 mb-12 justify-start ">
+                    <div class="grid grid-row-2 gap-4 justify-start ">
+                        <div class="items-start">
+                            <span class="font-semibold text-base leading-5 "> Add Copy of your Licence : </span>
+                            <div class="rounded-lg bg-white shadow-md h-10 flex items-center gap-4 mt-2">
+                                <div class=" bg-gray-400 h-full text-gray-500 flex justify-start items-center cursor-pointer w-1/4 rounded-md px-5 "
+                                    (click)="clickFakeUpload('UploadIdF')">FILE</div>
+                                <input type="file" class="opacity-0 pointer-events-none absolute w-full " id="UploadIdF"
+                                    (change)="uploadedFile($event,'CopyIdFile')" />
+                                <input type="text" class="outline-none  rounded-md w-full" placeholder="File" readonly
+                                    [(ngModel)]="CopyIdFile.name" formControlName="licenceCopy">
+                            </div>
+                            <div class="flex w-[10] leading-3 mt-1">
+                                <span> Supported files: pdf, jpeg, xls ...</span>
+                            </div>
+                            <div *ngIf="licenceCopyL.invalid
+                            && (licenceCopyL.dirty || licenceCopyL.touched)">
+                                <span class="font-semibold text-xs leading-5 text-rose-500"
+                                    *ngIf="licenceCopyL.errors['required']">
+                                    Licence is Required !</span>
+                            </div>
+                        </div>
+                        <div class="items-start">
+                            <span class="font-semibold text-base leading-5 items-start"> Add Copy of your RNE : </span>
+                            <div class="rounded-lg bg-white shadow-md flex  h-10 items-center gap-4 mt-2">
+                                <div class=" bg-gray-400 h-full text-gray-500 flex justify-start items-center cursor-pointer w-1/4 rounded-md px-5 "
+                                    (click)="clickFakeUpload('UploadIdRNE')">FILE</div>
+                                <input type="file" class="opacity-0 pointer-events-none absolute w-full py-4"
+                                    id="UploadIdRNE" (change)="uploadedFile($event,'CopyIdFile3')" />
+                                <input type="text" class="outline-none rounded-md w-full" placeholder="File" readonly
+                                    [(ngModel)]="CopyIdFile3.name" formControlName="rneCopy">
+                            </div>
+                            <div class="flex w-[10] leading-3 mt-1">
+                                <span> Supported files: pdf, jpeg, xls ...</span>
+                            </div>
+                            <div *ngIf="rneCopyL.invalid
+                                     && (rneCopyL.dirty || rneCopyL.touched)">
+                                <span class="font-semibold text-xs leading-5 text-rose-500"
+                                    *ngIf="rneCopyL.errors['required']">
+                                    RNE is Required !</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </ng-container>
+    <ng-container *ngIf="isselected =='Restaurant'" class="mb-24">
+        <div class="flex justify-center w-full">
+            <form [formGroup]="Form2Restaurant" *ngIf="step == 2">
+                <div class="mt-14 justify-center max-w-3xl w-full">
+                    <div class="grid grid-cols-2 gap-8 justify-center">
+                        <div class=" justify-center gap-12 mt-1 row-span-2">
+                            <img [src]="profilePicture ? profilePicture : 'assets/img/ImgDownload.png'" alt=""
+                                class="w-[150px] rounded-full" (click)="clickFakeUpload('UploadProfile')">
+                            <input type="file" class="opacity-0 pointer-events-none absolute" id="UploadProfile"
+                                (change)="uploadedFile($event,'profile')" />
+                        </div>
+                        <div class="flex flex-col items-start">
+                            <span class="font-semibold text-base leading-5 "> Company's Legal Name :</span>
+                            <div class=" rounded-lg bg-white px-4 py-1 shadow-md items-center w-full gap-4">
+                                <input type="text" name="legalName" formControlName="legalName"
+                                    class="outline-none w-full h-8" required>
+                            </div>
+                            <div *ngIf="legalNameR.invalid
+                                && (legalNameR.dirty || legalNameR.touched)">
+                                <span class="font-semibold text-xs leading-5 text-rose-500"
+                                    *ngIf="legalNameR.errors['required']">
+                                    Legal Name is Required !</span>
+                                <span class="font-semibold text-xs leading-5 text-rose-500"
+                                    *ngIf="legalNameR.errors['pattern']">
+                                    Only letters allowed !</span>
+                            </div>
+                        </div>
+                        <div class=" flex flex-col items-start">
+                            <span class="font-semibold text-base leading-5 "> Contact Person :</span>
+                            <div class=" rounded-lg bg-white px-4 py-1 shadow-md w-full items-center gap-4">
+                                <input type="text" formControlName="persAContact" class="outline-none w-full h-8">
+                            </div>
+                            <div *ngIf="persAContactR.invalid && (persAContactR.dirty || persAContactR.touched)">
+                                <span class="font-semibold text-xs leading-5 text-rose-500"
+                                    *ngIf="persAContactR.errors['required']">
+                                    Contact Person Name is Required !</span>
+                                <span class="font-semibold text-xs leading-5 text-rose-500"
+                                    *ngIf="persAContactR.errors['pattern']">
+                                    Only letters allowed !</span>
+                            </div>
+                        </div>
+                        <div class="flex flex-col items-start">
+                            <span class="font-semibold text-base leading-5 "> Phone Number :</span>
+                            <div class=" rounded-lg bg-white px-4 py-1 shadow-md flex items-center gap-4">
+                                <img src="assets/img/Phone.png " class="text-rose-500">
+                                <input type="text" formControlName="telephone"
+                                    class="form-control outline-none w-full h-8" placeholder="+xxx xxxxxxxx">
+                            </div>
+                            <div *ngIf="telephoneR.invalid && (telephoneR.dirty || telephoneR.touched)">
+                                <span class="font-semibold text-xs leading-5 text-rose-500"
+                                    *ngIf="telephoneR.errors['required']">
+                                    Company Number is Required !</span>
+                                <span class="font-semibold text-xs leading-5 text-rose-500"
+                                    *ngIf="telephoneR.errors['pattern']">
+                                    Format non Valid !</span>
+                            </div>
+                        </div>
+                        <div class="flex flex-col items-start">
+                            <span class="font-semibold text-base leading-5 "> Email :</span>
+                            <div class=" rounded-lg bg-white px-4 py-1 w-full shadow-md flex items-center gap-4">
+                                <img src="assets/img/Email.png " class="text-rose-500">
+                                <input type="text" class="form-control outline-none w-full h-8"
+                                    formControlName="email">
+                            </div>
+                            <div *ngIf="emailR.invalid
+                                    && (emailR.dirty || emailR.touched)">
+                                <span class="font-semibold text-xs leading-5 text-rose-500"
+                                    *ngIf="emailR.errors['required']">
+                                    Email is Required !</span>
+                                <span class="font-semibold text-xs leading-5 text-rose-500"
+                                    *ngIf="emailR.errors['pattern']">
+                                    Email is Invalid !</span>
+                            </div>
+                        </div>
+                        <div class="flex flex-col items-start">
+                            <span class="font-semibold text-base leading-5 "> Enter your Password :</span>
+                            <div class=" rounded-lg bg-white px-4 py-1 shadow-md flex items-center gap-4">
+                                <img src="assets/img/pass.png " class="text-rose-500">
+                                <input type="password" class="form-control outline-none h-8"
+                                    formControlName="password">
+                            </div>
+                            <div *ngIf="passwordR.invalid
+                                && (passwordR.dirty || passwordR.touched)">
+                                <div *ngIf="passwordR.errors['required'] "
+                                    class="font-semibold text-xs leading-5 text-rose-500"> Password is required !</div>
+                                <div *ngIf="passwordR.value" class="font-semibold text-xs leading-5"
+                                    [class]="!passwordHaveOrgR('lowercase')?'text-red-500':'text-green-600'">
+                                    At least one lowercase !</div>
+                                <div *ngIf="passwordR.value" class="font-semibold text-xs leading-5"
+                                    [class]="!passwordHaveOrgR('upercase')? 'text-red-500':'text-green-600'">
+                                    At least one uppercase !
+                                </div>
+                                <div *ngIf="passwordR.value" class="font-semibold text-xs leading-5"
+                                    [class]="!passwordHaveOrgR('num')? 'text-red-500':'text-green-600'">
+                                    At least one numeric !
+                                </div>
+                                <div *ngIf=" passwordR.value" class="font-semibold text-xs leading-5"
+                                    [class]="!passwordHaveOrgR('num')? 'text-red-500':'text-green-600'">
+                                    Minimum 8 characters !
+                                </div>
+                                <div *ngIf="passwordR.errors && passwordR.value"
+                                    [class]="!passwordHaveOrgR('special')? 'text-red-500':'text-green-600'"
+                                    class="font-semibold text-xs leading-5 ">
+                                    Atleast a special character !
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="flex flex-col items-start">
+                            <span class="font-semibold text-base leading-5 "> Confirm your Password :</span>
+                            <div class=" rounded-lg bg-white px-4 py-1 shadow-md flex items-center w-full gap-4">
+                                <img src="assets/img/pass.png " class="text-rose-500">
+                                <input type="password" class="form-control outline-none  h-8"
+                                    formControlName="confirmPassword">
+                            </div>
+                            <div *ngIf="confirmPasswordR.value !== passwordR.value
+                                && (confirmPasswordR.dirty || confirmPasswordR.touched)">
+                                <span class="font-semibold text-xs leading-5 text-rose-500"> Mismatch Password !</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="flex justify-center w-full">
+            <form [formGroup]="Form3Restaurant" *ngIf="step == 3">
+                <div class="flex flex-col mt-14 justify-center">
+                    <div class="flex flex-row justify-center gap-12 mt-12">
+                        <div class="flex flex-col items-start">
+                            <span class="font-semibold text-base leading-5 "> Country :</span>
+                            <div class=" rounded-lg bg-white px-4 py-1 shadow-md flex items-center gap-4 mt-2">
+                                <input type="text" class="outline-none  h-8" formControlName="country">
+                            </div>
+                            <div *ngIf="countryR.invalid
+                                && (countryR.dirty || countryR.touched)">
+                                <span class="font-semibold text-xs leading-5 text-rose-500"
+                                    *ngIf="countryR.errors['required']">
+                                    Country is Required !</span>
+                            </div>
+                        </div>
+                        <div class="flex flex-col items-start">
+                            <span class="font-semibold text-base leading-5 "> Country :</span>
+                            <div
+                                class=" rounded-lg bg-white px-4 py-1 h-10 w-full  shadow-md flex items-center gap-4 mt-2">
+                                <p-dropdown [options]="countries" [(ngModel)]="selectedCountry" optionLabel="Name"
+                                    [filter]="true" filterBy="Name" [showClear]="true" placeholder="Select a Country"
+                                    formControlName="country">
+                                    <ng-template pTemplate="selectedItem">
+                                        <div class="country-item country-item-value flex gap-4 w-full "
+                                            *ngIf="selectedCountry">
+                                            <img [src]="selectedCountry.Image" alt="" class="w-8 rounded-md">
+                                            <div>{{selectedCountry.Name}}</div>
+                                        </div>
+                                    </ng-template>
+                                    <ng-template let-country pTemplate="item">
+                                        <div class="country-item flex gap-4">
+                                            <img [src]="country.Image" alt="" class="w-8 rounded-md">
+                                            <div>{{country.Name}}</div>
+                                        </div>
+                                    </ng-template>
+                                </p-dropdown>
+                            </div>
+                            <div *ngIf="countryR.invalid
+                                && (countryR.dirty || countryR.touched)">
+                                <span class="font-semibold text-xs leading-5 text-rose-500"
+                                    *ngIf="countryT.errors['required']">
+                                    Country is Required !</span>
+                            </div>
+                        </div>
+                        <div class="flex flex-col items-start">
+                            <span class="font-semibold text-base leading-5 "> Gouvernorate :</span>
+                            <div
+                                class=" rounded-lg bg-white px-4 py-1 shadow-md h-10 w-full flex items-center gap-4 mt-2">
+                                <p-dropdown [options]="countries" [(ngModel)]="selectedGouvernorate" optionLabel="Name"
+                                    [filter]="true" filterBy="Name" [showClear]="true"
+                                    placeholder="Select a Gouvernorate" formControlName="gouvernorate">
+                                    <ng-template pTemplate="selectedItem">
+                                        <div class="country-item country-item-value flex gap-4 w-full"
+                                            *ngIf="selectedCountry">
+                                            <img [src]="selectedCountry.Image" alt="" class="w-8 rounded-md">
+                                            <div>{{selectedCountry.Name}}</div>
+                                        </div>
+                                    </ng-template>
+                                    <ng-template let-country pTemplate="item">
+                                        <div class="country-item flex gap-4">
+                                            <img [src]="country.Image" alt="" class="w-8 rounded-md">
+                                            <div>{{country.Name}}</div>
+                                        </div>
+                                    </ng-template>
+                                </p-dropdown>
+                            </div>
+                            <div *ngIf="gouvernorateR.invalid
+                                && (gouvernorateR.dirty || gouvernorateR.touched)">
+                                <span class="font-semibold text-xs leading-5 text-rose-500"
+                                    *ngIf="gouvernorateR.errors['required']">
+                                    Gouvernorate is Required !</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flex flex-row justify-center gap-12 mt-8">
+                        <div class="flex flex-col items-start">
+                            <span class="font-semibold text-base leading-5 "> Adresse :</span>
+                            <div class=" rounded-lg bg-white px-8 h-10 py-3 shadow-md flex items-center gap-4 w-full ">
+                                <input type="text" formControlName="adresse"
+                                    class="form-control outline-none w-full h-8">
+                            </div>
+                            <div *ngIf="adresseR.invalid
+                                && (adresseR.dirty || adresseR.touched)">
+                                <span class="font-semibold text-xs leading-5 text-rose-500"
+                                    *ngIf="adresseR.errors['required']">
+                                    Adress is Required !</span>
+                            </div>
+                        </div>
+                        <div class="flex flex-col items-start">
+                            <span class="font-semibold text-base leading-5 "> ZIP Code :</span>
+                            <div class=" rounded-lg bg-white px-4 h-10 py-1 shadow-md flex items-center gap-4 w-full">
+                                <div class="field col-12 md:col-3 w-full">
+                                    <p-inputNumber [(ngModel)]="value20" mode="decimal" formControlName="zipCode"
+                                        [showButtons]="true" inputId="minmax-buttons" [min]="1" [max]="10000"
+                                        placeholder="xxxx">
+                                    </p-inputNumber>
+                                </div>
+                            </div>
+                            <div *ngIf="zipCodeR.invalid && (zipCodeR.dirty || zipCodeR.touched)">
+                                <span class="font-semibold text-xs leading-5 text-rose-500"
+                                    *ngIf="zipCodeR.errors['required'] && zipCodeR.value !=1">
+                                    ZIP Code is Required !</span>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="flex flex-row justify-center gap-12 mt-8">
+                        <div class="flex flex-col items-start">
+                            <span class="font-semibold text-base leading-5 w-full "> Male Workforce :</span>
+                            <div class=" rounded-lg bg-white px-4 py-1 shadow-md flex items-center gap-4 w-full">
+                                <div class="field col-12 md:col-3 w-full ">
+                                    <p-inputNumber [(ngModel)]="value21" mode="decimal"
+                                        formControlName="MaleWorkforce" [showButtons]="true"
+                                        inputId="minmax-buttons" [min]="1" [max]="10000">
+                                    </p-inputNumber>
+                                </div>
+
+                            </div>
+                            <div
+                                *ngIf="MaleWorkforceR.invalid && (MaleWorkforceR.dirty || MaleWorkforceR.touched)">
+                                <span class="font-semibold text-xs leading-5 text-rose-500"
+                                    *ngIf="MaleWorkforceR.errors['required']">
+                                    Male Workforce number is Required !</span>
+                            </div>
+                        </div>
+                        <div class="flex flex-col items-start">
+                            <span class="font-semibold text-base leading-5 "> Female Workfoce :</span>
+                            <div class=" rounded-lg bg-white px-4 py-1 shadow-md flex items-center gap-4 w-full">
+                                <div class="field col-12 md:col-3 w-full">
+                                    <p-inputNumber [(ngModel)]="value22" mode="decimal"
+                                        formControlName="FemaleWorkforce" [showButtons]="true"
+                                        inputId="minmax-buttons" [min]="1" [max]="10000">
+                                    </p-inputNumber>
+                                </div>
+
+                            </div>
+                            <div
+                                *ngIf="FemaleWorkforceR.invalid && (FemaleWorkforceR.dirty || FemaleWorkforceR.touched)">
+                                <span class="font-semibold text-xs leading-5 text-rose-500"
+                                    *ngIf="FemaleWorkforceR.errors['required']">
+                                    Female Workforce Number is Required !</span>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="flex justify-center w-full">
+            <form [formGroup]="Form4Restaurant" *ngIf="step ==4">
+                <div class="flex items-start gap-11 ">
+                    <div class="flex flex-col mt-14 mb-12 justify-start  ">
+                        <span class="flex ml-6 font-semibold text-base leading-5 "> Legal Status : </span>
+                        <div class="grid grid-cols-2 mt-3">
+                           <div class="flex flex-row gap-3 min-content"> 
+                            <input type="radio" name="legalStatus" class="accent-red-500 text-base ml-6 col-span-2 " value="SUARL" formControlName="legalStatus" [(ngModel)]="isselectedType"
+                                label="SUARL" />
+                                <span class="font-semibold text-base leading-5 justify-start "  > SUARL </span>
+                            </div>
+                            <div class="flex flex-row gap-3"> 
+                            <input type="radio" name="legalStatus" class="accent-red-500 text-base ml-6 col-span-2" value="SA" formControlName="legalStatus"
+                                label="" />
+                                <span class="font-semibold text-base leading-5 justify-start "> SA </span>
+                            </div>
+                            <div class="flex flex-row gap-3"> 
+                            <input type="radio" name="legalStatus" class="accent-red-500 text-base ml-6 col-span-2" value="SARL" formControlName="legalStatus"
+                                label="" /> 
+                                <span class="font-semibold text-base leading-5 justify-start mt-2 "  > SARL </span>        
+                            </div>
+                            <div class="flex flex-row gap-1"> 
+                            <input type="radio" name="legalStatus" class="accent-red-500 text-base ml-6 col-span-2" formControlName="legalStatus" value="Other"
+                                label="" /> 
+                                <div class=" rounded-lg bg-white px-4 py-1 shadow-md  items-center gap-4 w-full">
+                                    <input type="text" class="outline-none w-full h-8 text-black cursor-pointer "  [contentEditable]="false" 
+                                    readonly 
+                                    placeholder="Other">
+                                </div>
+                            </div>
+                            <div class="flex flex-row gap-3"> 
+                            <input type="radio" name="legalStatus" class="accent-red-500 text-base ml-6 col-span-2" value="SAS" formControlName="legalStatus"
+                                label="" /> 
+                                <span class="font-semibold text-base leading-5 justify-start " > SAS </span>                                 
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flex  mt-14 mb-12 justify-left ">
+                        <div class="grid grid-cols-2 gap-4 justify-start w-full">
+                            <div class="items-start col-span-2 w-full">
+                                <span class="flex flex-col font-semibold text-base leading-5 items-start "> Activity : </span>
+                                <div class=" rounded-lg bg-white px-4 py-1 shadow-md  items-center gap-4 w-full">
+                                    <p-dropdown  [editable]="true" optionLabel="name" class="flex w-full" formControlName="basicActivity"></p-dropdown>
+                                </div>
+
+                        </div>
+                            <div class="items-start grid mt-3">
+                                <div class=" flex flex-col items-start w-full">
+                                    <span class="font-semibold text-base leading-5 "> CNSS Affiliation Number :</span>
+                                    <div class=" rounded-lg bg-white px-4 py-1 shadow-md  items-center gap-4 w-full">
+                                        <input type="text" class="outline-none w-full h-8" formControlName="numCnss">
+                                    </div>
+                                </div>
+                                <div *ngIf="numCnssR.invalid && (numCnssR.dirty || numCnssR.touched)">
+                                    <span class="font-semibold text-xs leading-5 text-rose-500"
+                                        *ngIf="numCnssR.errors['required']">
+                                        CNSS Number is Required !</span>
+                                    <span class="font-semibold text-xs leading-5 text-rose-500"
+                                        *ngIf="numCnssR.errors['pattern']">
+                                        Only Numbers Allowed !</span>
+                                </div>
+                            </div>
+                            <div class="items-start grid mt-3">
+                                <div class=" flex flex-col items-start w-full">
+                                    <span class="font-semibold text-base leading-5 "> Tax Registration Number :</span>
+                                    <div class=" rounded-lg bg-white px-4 py-1 shadow-md  items-center gap-4 w-full">
+                                        <input type="text" class="outline-none w-full h-8" formControlName="taxNum">
+                                    </div>
+                                </div>
+                                <div *ngIf="taxNumR.invalid && (taxNumR.dirty || taxNumR.touched)">
+                                    <span class="font-semibold text-xs leading-5 text-rose-500"
+                                        *ngIf="taxNumR.errors['required']">
+                                        Tax Number is Required !</span>
+                                    <span class="font-semibold text-xs leading-5 text-rose-500"
+                                        *ngIf="taxNumR.errors['pattern']">
+                                        Only Numbers Allowed !</span>
+                                </div>
+                            </div>
+                            <div class="items-start grid mt-3">
+                                <div class=" flex flex-col items-start w-full">
+                                    <span class="font-semibold text-base leading-5 "> Type of Restaurant :</span>
+                                    <div class=" rounded-lg bg-white px-4 py-1 shadow-md  items-center gap-4 w-full">
+                                        <p-dropdown  [editable]="true" optionLabel="name" class="outline-none w-full h-8" formControlName="restaurantType"></p-dropdown>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="items-start grid mt-3">
+                                <div class=" flex flex-col items-start w-full">
+                                    <span class="font-semibold text-base leading-5 "> Speciality :</span>
+                                    <div class=" rounded-lg bg-white px-4 py-1 shadow-md  items-center gap-4 w-full">
+                                        <p-dropdown  [editable]="true" optionLabel="name" class="outline-none w-full h-8" formControlName="restaurantSpeciality"></p-dropdown>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="flex justify-center w-full">
+            <form [formGroup]="Form5Restaurant" *ngIf="step == 5">
+                <div class="flex flex-col mt-14 mb-12 justify-start ">
+                    <div class="grid grid-row-2 gap-4 justify-start ">
+                        <div class="items-start">
+                            <span class="font-semibold text-base leading-5 "> Add Copy of your Licence : </span>
+                            <div class="rounded-lg bg-white shadow-md h-10 flex items-center gap-4 mt-2">
+                                <div class=" bg-gray-400 h-full text-gray-500 flex justify-start items-center cursor-pointer w-1/4 rounded-md px-5 "
+                                    (click)="clickFakeUpload('UploadIdF')">FILE</div>
+                                <input type="file" class="opacity-0 pointer-events-none absolute w-full " id="UploadIdF"
+                                    (change)="uploadedFile($event,'CopyIdFile')" />
+                                <input type="text" class="outline-none  rounded-md w-full" placeholder="File" readonly
+                                    [(ngModel)]="CopyIdFile.name" formControlName="licenceCopy">
+                            </div>
+                            <div class="flex w-[10] leading-3 mt-1">
+                                <span> Supported files: pdf, jpeg, xls ...</span>
+                            </div>
+                            <div *ngIf="licenceCopyR.invalid
+                            && (licenceCopyR.dirty || licenceCopyR.touched)">
+                                <span class="font-semibold text-xs leading-5 text-rose-500"
+                                    *ngIf="licenceCopyR.errors['required']">
+                                    Licence is Required !</span>
+                            </div>
+                        </div>
+                        <div class="items-start">
+                            <span class="font-semibold text-base leading-5 items-start"> Add Copy of your RNE : </span>
+                            <div class="rounded-lg bg-white shadow-md flex  h-10 items-center gap-4 mt-2">
+                                <div class=" bg-gray-400 h-full text-gray-500 flex justify-start items-center cursor-pointer w-1/4 rounded-md px-5 "
+                                    (click)="clickFakeUpload('UploadIdRNE')">FILE</div>
+                                <input type="file" class="opacity-0 pointer-events-none absolute w-full py-4"
+                                    id="UploadIdRNE" (change)="uploadedFile($event,'CopyIdFile3')" />
+                                <input type="text" class="outline-none rounded-md w-full" placeholder="File" readonly
+                                    [(ngModel)]="CopyIdFile3.name" formControlName="rneCopy">
+                            </div>
+                            <div class="flex w-[10] leading-3 mt-1">
+                                <span> Supported files: pdf, jpeg, xls ...</span>
+                            </div>
+                            <div *ngIf="rneCopyR.invalid
+                                     && (rneCopyR.dirty || rneCopyR.touched)">
+                                <span class="font-semibold text-xs leading-5 text-rose-500"
+                                    *ngIf="rneCopyR.errors['required']">
+                                    RNE is Required !</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </ng-container>
+    <ng-container *ngIf="isselected =='Lodging'">
+        <div class="flex justify-center w-full">
+            <div class="flex justify-center w-full">
+
+            </div>
+        </div>
+    </ng-container>
+
+    <ng-container *ngIf="isselected =='Restaurant'">
+        <div class="flex justify-center w-full">
+            <div class="flex justify-center w-full">
+
+            </div>
+        </div>
+    </ng-container>
+
+    <div class="flex justify-center w-full mb-5  fixed bottom-8">
+        <div class="mt-4 flex items-center justify-between gap-4 w-full max-w-5xl">
+            <div class="flex justify-center ">
+                <button class="previous-button  border-2  border-rose-500" (click)="step = step-1"
+                    *ngIf="step > 1">PREVIOUS</button>
+            </div>
+            <div *ngIf="step <= 1"></div>
+            <div class="flex gap-4" *ngIf="step == (isselected == 'Transport' ? 5 : 5) ">
+                <div class="flex justify-center  ">
+                    <button class="verif-button border-2 border-x-blue-900" (click)="step = step">VALIDATE</button>
+                </div>
+                <div class="flex justify-center ">
+                    <button class="primary-button border-2  border-rose-500" (click)="step = step" (click)="register()">CONFIRM</button>
+                </div>
+
+            </div>
+            <div class="flex" *ngIf="step < (isselected == 'Transport' ? 5 : 5)">
+                <button class="primary-button   border-2 border-red-500"  [disabled]="!NextStepValidation()"
+                [class]="!NextStepValidation() ? 'primary-button-disabled':''" (click)="step = step+1"
+                    *ngIf="step > 1">NEXT</button>
+            </div>
+        </div>
+    </div>
+</div>

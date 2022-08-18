@@ -58,8 +58,8 @@
                 
     <td> {{C.telephone}} </td>   
     <td>
-      <button class="w-4"(click)="onClick()" [ngClass]="action =='Delete' ?  'btn btn-outline-danger':'btn btn-outline-success' " > {{action}}</button>
  
+      <button type="button" (click)="deleteUser(C.id)"  class="btn btn-danger">Delete</button>
 <button type="button" class="btn btn-outline-info">View </button>
  
     </td>

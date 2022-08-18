@@ -25,29 +25,93 @@ export const MENU: MenuItem[] = [
     label: 'Components',
     isTitle: true
   },
+  
   {
-    label: 'Client',
-    icon: 'layout',
-   
-        link: '/tables/ngx-datatable'
-      },
+    label: 'USERS',
+    icon: 'feather',
+    subItems: [
+      { 
+          
+              label: 'Client', 
+              subItems: [
 
-      {
-        label: 'Host',
-        icon: 'layout',
+                {label: 'All Clients', 
        
-            link: '/tables/hostcomponent'
+                link: '/tables/ngx-datatable'},
+               
+
+              ]}
+
+
+
+
+
+
+
+    ,
+           
+              
+              
+                {  label: 'Hosts', 
+                            subItems: [
+              
+                              {label: 'All Hosts', 
+                     
+                              link: '/tables/hostcomponent'},
+
+                              {label: 'All Individuals', 
+                     
+                              link: '/tables/hostindiv'},
+                              {label: 'All organisations', 
+                     
+                              link: '/tables/hostorg'},
+
+                              {label: 'HOSTS WAITING FOR VERIFICATION', 
+                     
+                              link: '/tables/HWV'}
+                      ,
+                      {label: 'VERIFIED HOST', 
+                     
+                      link: '/tables/HV'} ]},
+              {
+                label: 'Merchant', 
+                
+                    subItems: [
+                      {label: 'All Merchants', 
+             
+                      link: '/tables/merchantcomponent'},
+
+                      {label: 'Merchant en attente', 
+             
+                      link: '/tables/merchantEA'},
+                     
+      
+                    ]}
+                  
+    ]},   { label: 'Experience',
+
+    subItems: [
+      {label: 'All Experiences', 
+
+       link: '/tables/Exp',},
+
+      {label: 'All transport', 
+
+      link: '/tables/AllTransport'},
+     
+      {label: 'All Lodging', 
+
+      link: '/tables/AllLodging'},
+      
+      {label: 'All food', 
+
+      link: '/tables/AllFood'},]
+
           },
 
-          {
-            label: 'Merchant',
-            icon: 'layout',
-           
-                link: '/tables/merchantcomponent'
-              },
-              {
-                label: 'Timeline',
-                link: '/general/timeline',
+
+      { label: 'Timeline',
+        link: '/general/timeline',
               },
  
   {

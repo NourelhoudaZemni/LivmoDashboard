@@ -1,0 +1,140 @@
+<p>hostindividual works!</p>
+ 
+<nav class="page-breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a routerLink=".">Tables</a></li>
+      <li class="breadcrumb-item active" aria-current="page">Data table</li>
+    
+    </ol>
+  </nav>
+   
+  
+   
+   
+  <div class="row">
+    <div class="col-md-12 stretch-card">
+      <div class="card">
+        <div class="card-body">
+          <h6 class="card-title">HOST</h6>
+          <div class="table-responsive">
+            <table id="dataTableExample" class="table">
+              <thead>
+                <tr>
+                  
+                  <th>Photo</th> 
+                  <th>LegalName</th>
+                  
+                  <th>Type</th>
+                  
+                  <th>ETAT</th>
+                  
+                  <th>RNE</th>
+                  
+                  <th>LICENCE</th>
+                  
+                  <th>Country</th>
+                  
+                  <th>Adresse</th>
+                  <th>Email</th>
+                  <th>Telephone</th> 
+                  
+                  <th>Actions</th>
+                </tr>   
+              </thead>   
+              <tbody *ngFor="let host of list, let i=index">
+    <tr >
+      
+      <td> 
+        <div class="image overflow-hidden ">
+          <img class="object-cover rounded-full h-36 w-36 " src={{host.photoLink}} alt="">
+  
+      </div> 
+     
+      </td> 
+       
+                  
+      <td> {{host.legalName}} </td>
+      <td>{{host.type}}</td>
+      <td>{{host.verified}}</td>
+      <td>
+  
+        <ng-template #content let-c="close" let-d="dismiss">
+        <div class="modal-header">
+          <h4 class="modal-title" id="modal-basic-title">RNE </h4>
+          <button type="button" class="btn-close" aria-label="Close" (click)="d('Cross click')"></button>
+        </div>
+        <div class="modal-body">
+  
+          <a href="{{host.rneCopy}}"> 
+         
+  
+            <img class="pdf" src='/assets/images/viewmore.png' alt="">
+            PDF UPLOADED
+    
+          
+    
+        </a> 
+          <div class="image overflow-hidden ">
+         
+  
+            <img class="object-cover rounded-full w-100 h-100" src={{host.rneCopy}} alt="">
+          </div> 
+        </div>
+        
+      </ng-template>
+      
+      <button class="btn btn-lg btn-outline-primary" (click)="openLg(content)">View</button>
+  
+     
+     </td> 
+      
+     
+     <td>
+  
+      <ng-template #content2 let-c="close" let-d="dismiss">
+      <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">Licence </h4>
+        <button type="button" class="btn-close" aria-label="Close" (click)="d('Cross click')"></button>
+      </div>
+      <div class="modal-body">
+        <div class="image overflow-hidden ">
+          
+          <img class="object-cover rounded-full center w-100 h-100" src={{host.licenceCopy}} alt="">
+        </div> 
+      </div>
+      
+    </ng-template>
+    
+    <button class="btn btn-lg btn-outline-primary" (click)="openLg(content2)">View</button> 
+  
+   </td> 
+      
+      <td> {{host.country}} 
+       
+      </td> 
+      
+      <td> {{host.Adresse}} </td> 
+      <td> {{host.email}} </td> 
+                  
+      <td> {{host.telephone}} </td>   
+      <td>
+   
+  
+        
+        <button type="button" class="btn btn-outline-info" (click)="Verify(host.email)">V </button>
+        
+        <button type="button" class="btn btn-outline-info" (click)="NotVerify(host.email)">NV </button>
+  
+        <button type="button" class="btn btn-outline-info">View </button>
+   
+      </td>
+    </tr>
+  </tbody>
+              
+       
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

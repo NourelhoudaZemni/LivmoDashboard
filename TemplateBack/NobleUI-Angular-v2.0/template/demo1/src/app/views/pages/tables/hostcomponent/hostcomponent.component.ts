@@ -1,9 +1,10 @@
+ 
 import { Component, OnInit, ViewEncapsulation  } from '@angular/core'; 
  
 import { NgbModalConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { DataTable } from "simple-datatables";
 import { AdminService } from 'src/app/services/admin.service';
-  
+import { HostModel } from 'src/app/Models/host.model';
 @Component({
   selector: 'app-hostcomponent',
   templateUrl: './hostcomponent.component.html',
@@ -29,8 +30,13 @@ export class HostComponent implements OnInit {
   userName:any='';
   
   telephone:any='';
+  
+  type:any='';
+  verified:any='';
   list:any;
   
+allHosts:any;
+
   constructor(config: NgbModalConfig, private modalService: NgbModal , private adminService : AdminService) {
     config.backdrop = 'static';
     config.keyboard = false;
@@ -55,8 +61,8 @@ export class HostComponent implements OnInit {
       this.country=this.list.country;
       
       this.adresse=this.list.adresse;
-
-
+      this.type = this.list.type;
+      this.verified=this.list.verified;
 
       this.persAContact=this.list.persAContact; 
       this.telephone=this.list.telephone; 
@@ -84,4 +90,28 @@ onClick() {
 openLg(c:any) {
   this.modalService.open(c, { size: 'lg' });
 }
+
+getAllHosts(){
+  this.allHosts=this.adminService.getHosts();
+   }
+
+Verify(email:any){
+
+this.adminService.VerifyHosts(email).subscribe(host=>{
+  this.getAllHosts();
+  location.reload();
+
+})
+}
+
+NotVerify(email:any){
+
+  this.adminService.NotVerifyHosts(email).subscribe(host=>{
+    this.getAllHosts();
+    location.reload();
+  
+  })
+  }
+
+
 }

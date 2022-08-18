@@ -1,0 +1,37 @@
+<form [formGroup]="LoginForm"><div class="flex flex-col md:flex-row">
+  <div class="h-32 md:h-auto md:w-1/2">
+    <img class="object-cover w-fit h-fit rounded-2xl" src="assets/img/login.png" alt="img" />
+  </div>
+  <div class="flex items-center justify-center p-6 sm:p-12 md:w-1/2">
+    <div class="w-full">
+      <div class="flex justify-center">
+        <img src="assets/svgs/logo.svg" alt="" class="w-[150px] rounded-3xl">
+      </div>
+      <div class="mt-4">
+        <span class="font-semibold text-base leading-5 flex items-start "> Email :</span>
+        <div class=" rounded-lg bg-white px-4 py-1 shadow-md flex items-center gap-4">
+          <img src="assets/img/Email.png " class="text-rose-500">
+          <input type="text" class="form-control outline-none  h-8" formControlName="email">
+        </div>
+        <div class="mt-4 ">
+          <span class="font-semibold text-base leading-5 flex items-start "> Password :</span>
+          <div class=" rounded-lg bg-white px-4 py-1 shadow-md flex items-center gap-4">
+            <img src="assets/img/pass.png " class="text-rose-500 ml-3">
+            <input type="password" class="form-control outline-none h-8" formControlName="password">
+          </div>
+        </div>
+        <div class="mt-4 text-center">
+          <p class="text-sm"><a href="#" class="text-blue-500 hover:underline font-bold"> Forgot Password ?</a></p>
+        </div>
+        <button class=" verif-button block w-full px-4 py-2 mt-4 leading-5 text-center" (click)="login()">
+          Log In
+        </button>
+        <button class=" primary-button block w-full px-4 py-2 mt-4 leading-5 text-center "
+          [routerLink]="['/Dashboard']">
+          Create new Account
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+</form>

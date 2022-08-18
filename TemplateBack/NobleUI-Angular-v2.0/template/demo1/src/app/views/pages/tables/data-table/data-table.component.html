@@ -23,9 +23,12 @@
                 <th>Username</th>
                 <th>LegalName</th>
                 
+                <th>Status</th> 
                 <th>Country</th>
                 <th>Email</th>
                 <th>Telephone</th> 
+                
+                <th>Actions</th> 
               </tr>   
             </thead>   
             <tbody *ngFor="let merchant of list, let i=index">
@@ -41,10 +44,23 @@
                 
     <td> {{merchant.legalName}} </td>
     
+    <td> {{merchant.verified}} </td>
+    
     <td> {{merchant.country}} </td> 
     <td> {{merchant.email}} </td> 
                 
                   <td> {{merchant.telephone}} </td>   
+                  <td>
+   
+  
+        
+                    <button type="button" class="btn btn-outline-info" (click)="Verify(merchant.email)">V </button>
+                    
+                    <button type="button" class="btn btn-outline-info" (click)="NotVerify(merchant.email)">NV </button>
+              
+                    <button type="button" class="btn btn-outline-info">View </button>
+               
+                  </td>
   </tr>
 </tbody>
             

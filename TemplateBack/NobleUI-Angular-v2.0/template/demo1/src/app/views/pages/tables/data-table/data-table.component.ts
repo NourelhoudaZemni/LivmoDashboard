@@ -17,9 +17,11 @@ export class DataTableComponent implements OnInit {
   
   userName:any='';
   
+  verified:any='';
+  
   phoneNumber:any='';
   list:any;
-  
+  allM:any;
 records=[{name:'orange', code:'ff8ff'},
 {name:'ddddd', code:'ff8ff'},
 {name:'sssss', code:'ff8ff'},
@@ -29,7 +31,7 @@ records=[{name:'orange', code:'ff8ff'},
   constructor(private adminService : AdminService) {
    
 
-    this.adminService.getMerchants().subscribe(data=>{
+    this.adminService.getCommerçant().subscribe(data=>{
      this.list = data; 
       
 
@@ -37,6 +39,9 @@ records=[{name:'orange', code:'ff8ff'},
         
        
       this.photoLink = this.list.photoLink;
+
+      
+      this.verified = this.list.verified;
        
       this.userName=this.list.userName; 
       
@@ -55,5 +60,24 @@ records=[{name:'orange', code:'ff8ff'},
   ngOnInit(): void {
     const dataTable = new DataTable("#dataTableExample");
   }
-
+  getAllM(){
+    this.allM=this.adminService.getHosts();
+     }
+  Verify(email:any){
+  
+    this.adminService.VerifyHosts(email).subscribe(host=>{
+      this.getAllM();
+      location.reload();
+    
+    })
+    }
+    
+    NotVerify(email:any){
+    
+      this.adminService.NotVerifyHosts(email).subscribe(host=>{
+        this.getAllM();
+        location.reload();
+      
+      })
+      }
 }
