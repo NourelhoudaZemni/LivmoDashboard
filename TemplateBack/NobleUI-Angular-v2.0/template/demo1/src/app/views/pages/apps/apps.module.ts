@@ -13,12 +13,7 @@ import { NgbDropdownModule, NgbTooltipModule, NgbNavModule, NgbCollapseModule } 
 import { NgSelectModule } from '@ng-select/ng-select';
 import { SimplemdeModule, SIMPLEMDE_CONFIG } from 'ng2-simplemde'
 
-import { AppsComponent } from './apps.component'; 
-import { ChatComponent } from './chat/chat.component';
-import { EmailComponent } from './email/email.component';
-import { InboxComponent } from './email/inbox/inbox.component';
-import { ReadComponent } from './email/read/read.component';
-import { ComposeComponent } from './email/compose/compose.component';
+import { AppsComponent } from './apps.component';   
 
 import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
 import { PERFECT_SCROLLBAR_CONFIG } from 'ngx-perfect-scrollbar';
@@ -46,17 +41,14 @@ const routes: Routes = [
         pathMatch: 'full',
       },
       
-      {
-        path: 'chat',
-        component: ChatComponent
-      },
+     
      
     ]
   }
 ]
 
 @NgModule({
-  declarations: [EmailComponent, ChatComponent, AppsComponent, InboxComponent, ReadComponent, ComposeComponent],
+  declarations: [AppsComponent],
   imports: [
     CommonModule,
     RouterModule.forChild(routes),

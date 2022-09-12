@@ -71,7 +71,12 @@ records=[{name:'orange', code:'ff8ff'},
     
     })
     }
-    
+    deleteUser(id:any){
+      console.log("id"+ id);
+      this.adminService.deleteUser(id).subscribe(host=>{
+        this.getAllM();
+        location.reload();
+    })}
     NotVerify(email:any){
     
       this.adminService.NotVerifyHosts(email).subscribe(host=>{

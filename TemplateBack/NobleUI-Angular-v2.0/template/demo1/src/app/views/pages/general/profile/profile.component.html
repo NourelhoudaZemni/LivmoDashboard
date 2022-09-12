@@ -10,10 +10,37 @@
             <img class="wd-70 rounded-circle" src="https://via.placeholder.com/100x100" alt="profile">
             <span class="h4 ms-3 text-dark">Amiah Burton</span>
           </div>
-          
+          <div class="d-none d-md-block">
+            <button class="btn btn-primary btn-icon-text">
+              <i class="feather icon-edit btn-icon-prepend"></i> Edit profile
+            </button>
+          </div>
         </div>
       </div>
-     
+      <div class="d-flex justify-content-center p-3 rounded-bottom">
+        <ul class="d-flex align-items-center m-0 p-0">
+          <li class="d-flex align-items-center active">
+            <i class="feather icon-columns me-1 icon-md text-primary"></i>
+            <a class="pt-1px d-none d-md-block text-primary" routerLink=".">Timeline</a>
+          </li>
+          <li class="ms-3 ps-3 border-start d-flex align-items-center">
+            <i class="feather icon-user me-1 icon-md"></i>
+            <a class="pt-1px d-none d-md-block text-body" routerLink=".">About</a>
+          </li>
+          <li class="ms-3 ps-3 border-start d-flex align-items-center">
+            <i class="feather icon-users me-1 icon-md"></i>
+            <a class="pt-1px d-none d-md-block text-body" routerLink=".">Friends <span class="text-muted tx-12">3,765</span></a>
+          </li>
+          <li class="ms-3 ps-3 border-start d-flex align-items-center">
+            <i class="feather icon-image me-1 icon-md"></i>
+            <a class="pt-1px d-none d-md-block text-body" routerLink=".">Photos</a>
+          </li>
+          <li class="ms-3 ps-3 border-start d-flex align-items-center">
+            <i class="feather icon-video me-1 icon-md"></i>
+            <a class="pt-1px d-none d-md-block text-body" routerLink=".">Videos</a>
+          </li>
+        </ul>
+      </div>
     </div>
   </div>
 </div>
@@ -164,5 +191,133 @@
       </div>
     </div>
   </div>
-  
+  <!-- middle wrapper end -->
+  <!-- right wrapper start -->
+  <div class="d-none d-xl-block col-xl-3">
+    <div class="row">
+      <div class="col-md-12 grid-margin">
+        <div class="card rounded">
+          <div class="card-body">
+            <h6 class="card-title">latest photos</h6>
+            <div class="row ms-0 me-0">
+              <a href="" (click)="false" class="col-md-4 ps-1 pe-1">
+                <figure class="mb-2">
+                  <img class="img-fluid rounded" src="https://via.placeholder.com/67x67" alt="">
+                </figure>
+              </a>
+              <a href="" (click)="false" class="col-md-4 ps-1 pe-1">
+                <figure class="mb-2">
+                  <img class="img-fluid rounded" src="https://via.placeholder.com/67x67" alt="">
+                </figure>
+              </a>
+              <a href="" (click)="false" class="col-md-4 ps-1 pe-1">
+                <figure class="mb-2">
+                  <img class="img-fluid rounded" src="https://via.placeholder.com/67x67" alt="">
+                </figure>
+              </a>
+              <a href="" (click)="false" class="col-md-4 ps-1 pe-1">
+                <figure class="mb-2">
+                  <img class="img-fluid rounded" src="https://via.placeholder.com/67x67" alt="">
+                </figure>
+              </a>
+              <a href="" (click)="false" class="col-md-4 ps-1 pe-1">
+                <figure class="mb-2">
+                  <img class="img-fluid rounded" src="https://via.placeholder.com/67x67" alt="">
+                </figure>
+              </a>
+              <a href="" (click)="false" class="col-md-4 ps-1 pe-1">
+                <figure class="mb-2">
+                  <img class="img-fluid rounded" src="https://via.placeholder.com/67x67" alt="">
+                </figure>
+              </a>
+              <a href="" (click)="false" class="col-md-4 ps-1 pe-1">
+                <figure class="mb-0">
+                  <img class="img-fluid rounded" src="https://via.placeholder.com/67x67" alt="">
+                </figure>
+              </a>
+              <a href="" (click)="false" class="col-md-4 ps-1 pe-1">
+                <figure class="mb-0">
+                  <img class="img-fluid rounded" src="https://via.placeholder.com/67x67" alt="">
+                </figure>
+              </a>
+              <a href="" (click)="false" class="col-md-4 ps-1 pe-1">
+                <figure class="mb-0">
+                  <img class="img-fluid rounded" src="https://via.placeholder.com/67x67" alt="">
+                </figure>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-12 grid-margin">
+        <div class="card rounded">
+          <div class="card-body">
+            <h6 class="card-title">suggestions for you</h6>
+            <div class="d-flex justify-content-between mb-2 pb-2 border-bottom">
+              <div class="d-flex align-items-center hover-pointer">
+                <img class="img-xs rounded-circle" src="https://via.placeholder.com/37x37" alt="">													
+                <div class="ms-2">
+                  <p>Mike Popescu</p>
+                  <p class="tx-11 text-muted">12 Mutual Friends</p>
+                </div>
+              </div>
+              <button class="btn btn-icon"><i class="feather icon-user-plus" ngbTooltip="Connect"></i></button>
+            </div>
+            <div class="d-flex justify-content-between mb-2 pb-2 border-bottom">
+              <div class="d-flex align-items-center hover-pointer">
+                <img class="img-xs rounded-circle" src="https://via.placeholder.com/37x37" alt="">													
+                <div class="ms-2">
+                  <p>Mike Popescu</p>
+                  <p class="tx-11 text-muted">12 Mutual Friends</p>
+                </div>
+              </div>
+              <button class="btn btn-icon"><i class="feather icon-user-plus" ngbTooltip="Connect"></i></button>
+            </div>
+            <div class="d-flex justify-content-between mb-2 pb-2 border-bottom">
+              <div class="d-flex align-items-center hover-pointer">
+                <img class="img-xs rounded-circle" src="https://via.placeholder.com/37x37" alt="">													
+                <div class="ms-2">
+                  <p>Mike Popescu</p>
+                  <p class="tx-11 text-muted">12 Mutual Friends</p>
+                </div>
+              </div>
+              <button class="btn btn-icon"><i class="feather icon-user-plus" ngbTooltip="Connect"></i></button>
+            </div>
+            <div class="d-flex justify-content-between mb-2 pb-2 border-bottom">
+              <div class="d-flex align-items-center hover-pointer">
+                <img class="img-xs rounded-circle" src="https://via.placeholder.com/37x37" alt="">													
+                <div class="ms-2">
+                  <p>Mike Popescu</p>
+                  <p class="tx-11 text-muted">12 Mutual Friends</p>
+                </div>
+              </div>
+              <button class="btn btn-icon"><i class="feather icon-user-plus" ngbTooltip="Connect"></i></button>
+            </div>
+            <div class="d-flex justify-content-between mb-2 pb-2 border-bottom">
+              <div class="d-flex align-items-center hover-pointer">
+                <img class="img-xs rounded-circle" src="https://via.placeholder.com/37x37" alt="">													
+                <div class="ms-2">
+                  <p>Mike Popescu</p>
+                  <p class="tx-11 text-muted">12 Mutual Friends</p>
+                </div>
+              </div>
+              <button class="btn btn-icon"><i class="feather icon-user-plus" ngbTooltip="Connect"></i></button>
+            </div>
+            <div class="d-flex justify-content-between">
+              <div class="d-flex align-items-center hover-pointer">
+                <img class="img-xs rounded-circle" src="https://via.placeholder.com/37x37" alt="">													
+                <div class="ms-2">
+                  <p>Mike Popescu</p>
+                  <p class="tx-11 text-muted">12 Mutual Friends</p>
+                </div>
+              </div>
+              <button class="btn btn-icon"><i class="feather icon-user-plus" ngbTooltip="Connect"></i></button>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- right wrapper end -->
 </div>

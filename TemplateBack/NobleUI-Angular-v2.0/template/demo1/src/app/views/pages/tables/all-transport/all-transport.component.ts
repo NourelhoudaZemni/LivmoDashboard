@@ -10,32 +10,37 @@ import { AdminService } from 'src/app/services/admin.service';
   styleUrls: ['./all-transport.component.scss']
 })
 export class AllTransportComponent implements OnInit {
-  vehiculeName:  any;
-  seats: any;
-  toGoFrom: any;
-  toGoFromDeparture:any;
-  toGoTo:any;
+  commercantId:any;
+  gouvernorate:  any;
+  numberOfSeatd: any;
+  type:any; 
   list:any;
+  
+  status:any;
   allExp:any; 
- 
+  activity:any;
+  vehuculeName:any;
+  transportId:any;
   constructor(private adminService : AdminService) {
    
 
-    this.adminService.GetAllTransportExperiences().subscribe(data=>{
+    this.adminService.GetAllTransportServices().subscribe(data=>{
      this.list = data; 
       console.log(data)
 
       console.log('a', this.list)  ;   
-        
+        this.transportId = this.list.transportId;
        
-      this.vehiculeName = this.list.vehiculeName;
+      this.vehuculeName = this.list.vehuculeName;
 
       
-      this.seats = this.list.seats;
+      this.status = this.list.status;
+      this.commercantId = this.list.commercantId;
+      this.numberOfSeatd = this.list.numberOfSeatd;
        
-      this.toGoFrom=this.list.toGoFrom; 
+      this.gouvernorate=this.list.gouvernorate; 
       
-      this.toGoTo=this.list.toGoTo;  
+      this.type=this.list.type;  
 
     })
 
@@ -43,25 +48,31 @@ export class AllTransportComponent implements OnInit {
 
 
   }
-
+ 
   ngOnInit(): void {
     const dataTable = new DataTable("#dataTableExample");
   }
   getAllM(){
-    this.allExp=this.adminService.GetAllTransportExperiences();
+    this.allExp=this.adminService.GetAllTransportServices();
      }
-  Verify(email:any){
+  deleteTransportService(id:any){ 
+    this.adminService.deleteTransportService(id).subscribe(host=>{
+      this.getAllM();
+      location.reload();})} 
+
+
+  Verify(id:any){
   
-    this.adminService.VerifyHosts(email).subscribe(host=>{
+    this.adminService.VerifyTransportService(id).subscribe(host=>{
       this.getAllM();
       location.reload();
     
     })
     }
     
-    NotVerify(email:any){
+    NotVerify(id:any){
     
-      this.adminService.NotVerifyHosts(email).subscribe(host=>{
+      this.adminService.NotVerifyTransportService(id).subscribe(host=>{
         this.getAllM();
         location.reload();
       

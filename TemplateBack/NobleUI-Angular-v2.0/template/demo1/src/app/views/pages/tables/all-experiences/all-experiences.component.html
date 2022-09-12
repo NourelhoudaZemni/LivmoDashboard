@@ -43,11 +43,14 @@
      
     
           
-                      <button type="button" class="btn btn-outline-info" (click)="Verify(merchant.email)">V </button>
+                      <button type="button" class="btn btn-outline-info" (click)="Verify(merchant.experienceId)">V </button>
                       
-                      <button type="button" class="btn btn-outline-info" (click)="NotVerify(merchant.email)">NV </button>
+                      <button type="button" class="btn btn-outline-info" (click)="NotVerify(merchant.experienceId)">NV </button>
                 
-                      <button type="button" class="btn btn-outline-info">View </button>
+                     
+      <button type="button" (click)="delete(merchant.experienceId)"  class="btn btn-danger">Delete</button>
+      
+      <button type="button" class="btn btn-outline-info">View </button>
                  
                     </td>
     </tr>

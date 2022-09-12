@@ -10,26 +10,28 @@ import { AdminService } from 'src/app/services/admin.service';
   styleUrls: ['./all-food.component.scss']
 })
 export class AllFoodComponent implements OnInit {
-  nameDish: any;
-  description : any;
-   
+  dishName: any;
+  foodPrice:any;
+  restaurantName : any;
+  status:any;
   list:any;
   allExp:any; 
+  foodServId:any;
  
   constructor(private adminService : AdminService) {
    
 
-    this.adminService.GetAllFoodExperiences().subscribe(data=>{
+    this.adminService.GetAllFoodServices().subscribe(data=>{
      this.list = data; 
       console.log(data)
 
       console.log('a', this.list)  ;   
-        
-       
-      this.nameDish = this.list.nameDish;
+        this.foodServId = this.list.foodServId;
+       this.status = this.list.status;
+      this.dishName = this.list.dishName;
 
-      
-      this.description = this.list.description;
+      this.restaurantName = this.list.restaurantName;
+      this.foodPrice = this.list.foodPrice;
          
     })
 
@@ -42,20 +44,20 @@ export class AllFoodComponent implements OnInit {
     const dataTable = new DataTable("#dataTableExample");
   }
   getAllM(){
-    this.allExp=this.adminService.GetAllFoodExperiences();
+    this.allExp=this.adminService.GetAllFoodServices();
      }
   Verify(email:any){
   
-    this.adminService.VerifyHosts(email).subscribe(host=>{
+    this.adminService.VerifyFoodService(email).subscribe(host=>{
       this.getAllM();
       location.reload();
     
     })
     }
-    
+    deleteTransportService(id:any){}
     NotVerify(email:any){
     
-      this.adminService.NotVerifyHosts(email).subscribe(host=>{
+      this.adminService.NotVerifyFoodService(email).subscribe(host=>{
         this.getAllM();
         location.reload();
       

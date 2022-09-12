@@ -1,2 +1,0 @@
-# bagngotourism
-Tourism app

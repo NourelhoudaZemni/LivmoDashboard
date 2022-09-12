@@ -10,35 +10,35 @@ import { AdminService } from 'src/app/services/admin.service';
   styleUrls: ['./all-lodging.component.scss']
 })
 export class AllLodgingComponent implements OnInit {
-  category:any; 
-  type:any='';
+  lodgingphoto:any; 
+  lodgingName:any='';
   
-  adress:any='';
+  pricePerNight:any='';
   
-  isValid:any='';
+  commercantId:any='';
   
-  verified:any='';
+  status:any='';
   
   phoneNumber:any='';
   list:any;
   allExp:any; 
- 
+  lodgingId:any='';
   constructor(private adminService : AdminService) {
    
 
-    this.adminService.GetAllLodgingExperiences().subscribe(data=>{
+    this.adminService.GetAllLodgingServices().subscribe(data=>{
      this.list = data; 
       console.log(data)
 
       console.log('a', this.list)  ;   
-        
-       
-      this.category = this.list.category;
+        this.lodgingId = this.list.lodgingId;
+       this.commercantId = this.list.commercantId;
+      this.lodgingphoto = this.list.lodgingphoto;
 
-       
-      this.type=this.list.type; 
+       this.status= this.list.status;
+      this.lodgingName=this.list.lodgingName; 
       
-      this.adress=this.list.adress;  
+      this.pricePerNight=this.list.pricePerNight;  
 
     })
 
@@ -51,23 +51,27 @@ export class AllLodgingComponent implements OnInit {
     const dataTable = new DataTable("#dataTableExample");
   }
   getAllM(){
-    this.allExp=this.adminService.GetAllLodgingExperiences();
+    this.allExp=this.adminService.GetAllLodgingServices();
      }
-  Verify(email:any){
-  
-    this.adminService.VerifyHosts(email).subscribe(host=>{
-      this.getAllM();
-      location.reload();
+
+
+  NotVerify(id:any){
     
-    })
-    }
-    
-    NotVerify(email:any){
-    
-      this.adminService.NotVerifyHosts(email).subscribe(host=>{
+      this.adminService.NotVerifyLodgingService(id).subscribe(host=>{
         this.getAllM();
         location.reload();
       
       })
       }
+
+      Verify(id:any){
+  
+        this.adminService.VerifyLodgingService(id).subscribe(host=>{
+          this.getAllM();
+          location.reload();
+        
+        })
+        }
+     deleteLodgingService(id:any){}
+   
 }

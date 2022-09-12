@@ -82,7 +82,15 @@ allHosts:any;
   openLg(c:any) {
     this.modalService.open(c, { size: 'lg' });
   }
-  
+   
+  deleteUser(id:any){
+    console.log("id"+ id);
+    this.adminService.deleteUser(id).subscribe(host=>{
+      this.getAllHosts();
+      location.reload();
+  })
+}
+
   getAllHosts(){
     this.allHosts=this.adminService.getHosts();
      }

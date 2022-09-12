@@ -1,7 +1,7 @@
 <nav class="page-breadcrumb">
     <ol class="breadcrumb">
-      <li class="breadcrumb-item"><a routerLink=".">Tables</a></li>
-      <li class="breadcrumb-item active" aria-current="page">Data table</li>
+      <li class="breadcrumb-item"><a routerLink=".">Services</a></li>
+      <li class="breadcrumb-item active" aria-current="page">Transport Service </li>
     
     </ol>
   </nav>
@@ -12,7 +12,8 @@
     <div class="col-md-12 stretch-card">
       <div class="card">
         <div class="card-body">
-          <h6 class="card-title">Merchant</h6>
+          <h6 class="card-title">Transport Service</h6>
+           
           <div class="table-responsive">
             <table id="dataTableExample" class="table">
               <thead>
@@ -20,9 +21,12 @@
                   
                   <th>Vehicule Name</th>
                   <th>Seats</th>
-                  <th>From</th>
+                  <th>Type</th>
                   
-                  <th>To</th>  
+                  <th>Gouvernorate</th>
+                  
+                  <th>Status</th>
+                  <th>Actions</th> 
                    
                 </tr>   
               </thead>   
@@ -30,13 +34,25 @@
     <tr >
       
        
-      <td> {{transport.vehiculeName}} </td> 
+      <td> {{transport.vehuculeName}} </td> 
                   
-      <td> {{transport.seats}} </td>
+      <td> {{transport.numberOfSeatd}} </td>
       
-      <td> {{transport.toGoFrom}} </td>
+      <td> {{transport.type}} </td>  
+       
+      <td> {{transport.gouvernorate}} </td>
       
-      <td> {{transport.toGoTo}} </td>  
+      <td> {{transport.status}} </td> 
+      
+      <td>
+        
+        <button type="button" class="btn btn-outline-info" (click)="Verify(transport.transportId)">V </button>
+                    
+        <button type="button" class="btn btn-outline-info" (click)="NotVerify(transport.transportId)">NV </button>
+  
+        <button type="button" (click)="deleteTransportService(transport.transportId)"  class="btn btn-danger">Delete</button>
+      
+      </td>
                    
                  
     </tr>

@@ -3,8 +3,7 @@ import { Component, OnInit, ViewEncapsulation  } from '@angular/core';
  
 import { NgbModalConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { DataTable } from "simple-datatables";
-import { AdminService } from 'src/app/services/admin.service';
-import { HostModel } from 'src/app/Models/host.model';
+import { AdminService } from 'src/app/services/admin.service'; 
 @Component({
   selector: 'app-hostcomponent',
   templateUrl: './hostcomponent.component.html',
@@ -90,7 +89,13 @@ onClick() {
 openLg(c:any) {
   this.modalService.open(c, { size: 'lg' });
 }
-
+deleteUser(id:any){
+  console.log("id"+ id);
+  this.adminService.deleteUser(id).subscribe(host=>{
+    this.getAllHosts();
+    location.reload();
+})
+}
 getAllHosts(){
   this.allHosts=this.adminService.getHosts();
    }

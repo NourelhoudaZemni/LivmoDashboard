@@ -112,7 +112,7 @@
      
     </td> 
     
-    <td> {{host.Adresse}} </td> 
+    <td> {{host.adresse}} </td> 
     <td> {{host.email}} </td> 
                 
     <td> {{host.telephone}} </td>   
@@ -123,8 +123,11 @@
       <button type="button" class="btn btn-outline-info" (click)="Verify(host.email)">V </button>
       
       <button type="button" class="btn btn-outline-info" (click)="NotVerify(host.email)">NV </button>
+      
+      <button type="button" (click)="deleteUser(host.id)"  class="btn btn-danger">Delete</button>
 
       <button type="button" class="btn btn-outline-info">View </button>
+      
  
     </td>
   </tr>

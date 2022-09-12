@@ -1,0 +1,48 @@
+<nav class="page-breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a routerLink=".">Reservation</a></li>
+      <li class="breadcrumb-item active" aria-current="page">Food </li>
+    
+    </ol>
+  </nav>
+  <div class="row">
+    <div class="col-md-12 stretch-card">
+      <div class="card">
+        <div class="card-body">
+          <h6 class="card-title">RESERVATION FOOD</h6>
+          <div class="table-responsive">
+            <table id="dataTableExample" class="table">
+              <thead>
+                <tr>
+                    <th>clientId</th>
+                  <th>foodId</th>
+                  <th>Status</th>
+                  <th>Quantity</th> 
+                  <th>dateReservation</th> 
+  
+                   
+                   
+                </tr>   
+              </thead>   
+              <tbody *ngFor="let l of list, let i=index" >
+    <tr *ngFor="let l of listNP, let i=index"  >
+        
+         <td>{{l.nom }}</td>
+         
+         <td>{{l.foodId}}</td>
+        <td> {{l.status}}</td> 
+                    
+        <td> {{l.reservationPrice}} </td>  
+        <td>{{l.dateReservation}}</td>
+         
+                     
+                   
+      </tr>
+    </tbody> 
+         
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>

@@ -1,7 +1,7 @@
 <nav class="page-breadcrumb">
     <ol class="breadcrumb">
-      <li class="breadcrumb-item"><a routerLink=".">Tables</a></li>
-      <li class="breadcrumb-item active" aria-current="page">Data table</li>
+      <li class="breadcrumb-item"><a routerLink=".">  Services </a></li>
+      <li class="breadcrumb-item active" aria-current="page">Lodging Service </li>
     
     </ol>
   </nav>
@@ -9,29 +9,38 @@
     <div class="col-md-12 stretch-card">
       <div class="card">
         <div class="card-body">
-          <h6 class="card-title">Merchant</h6>
+          <h6 class="card-title">Lodging  Service</h6>
           <div class="table-responsive">
             <table id="dataTableExample" class="table">
               <thead>
                 <tr>
-                  
-                  <th>Category</th>
-                  <th>Type</th>
-                  <th>Adress</th>
-                   
+                  <th>lodgingphoto</th>
+                  <th>commerçant </th> 
+                  <th>lodgingName</th>
+                  <th>pricePerNight</th> 
+                  <th>status</th>
+                   <th>Actions</th>
                    
                 </tr>   
               </thead>   
               <tbody *ngFor="let l of list, let i=index">
     <tr >
-      
-       
-      <td> {{l.category}}</td> 
+      <td>{{l.lodgingphoto}}</td>
+       <td> {{l.commercantId}} </td>
+      <td> {{l.lodgingName}}</td> 
                   
-      <td> {{l.type}} </td>
+      <td> {{l.pricePerNight}} </td>
 
-      <td> {{l.adress}} </td>
-       
+      <td> {{l.status}} </td>
+        <td>
+          <button type="button" (click)="deleteLodgingService(l.experienceId)"  class="btn btn-danger">Delete</button>
+      
+          <button type="button" class="btn btn-outline-info" (click)="Verify(l.lodgingId)">V </button>
+                    
+          <button type="button" class="btn btn-outline-info" (click)="NotVerify(l.lodgingId)">NV </button>
+    
+        </td>
+      
                    
                  
     </tr>

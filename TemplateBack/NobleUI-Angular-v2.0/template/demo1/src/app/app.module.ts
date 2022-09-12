@@ -11,22 +11,19 @@ import { AppComponent } from './app.component';
 import { ErrorPageComponent } from './views/pages/error-page/error-page.component';
 
 import { HIGHLIGHT_OPTIONS } from 'ngx-highlightjs';
+import { HttpClientModule } from '@angular/common/http';
 
-import {CloudinaryModule} from '@cloudinary/ng';
-import {HttpClientModule} from '@angular/common/http';
-import { CommonModule } from '@angular/common';
 @NgModule({
   declarations: [
     AppComponent,
     ErrorPageComponent,
   ],
-  imports: [
-    CloudinaryModule,
-    BrowserModule,
+  imports: [      BrowserModule.withServerTransition({ appId: 'angular-starter' }),
+
     HttpClientModule,
     AppRoutingModule,
-    BrowserAnimationsModule,
-    LayoutModule,
+    BrowserAnimationsModule, 
+    LayoutModule
   ],
   providers: [
     AuthGuard,

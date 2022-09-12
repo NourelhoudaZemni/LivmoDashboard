@@ -1,9 +1,0 @@
-.bg-AddExperience{
-    background-image: url('../../../../assets/img/createxp.png');
-    height: calc(100vh - 80px);
-    position: fixed;
-    width: 100vw;
-    bottom: 0;
-    background-size: cover;
-    background-position: bottom;
-}

@@ -20,7 +20,8 @@ export class AllExperiencesComponent implements OnInit {
   
   phoneNumber:any='';
   list:any;
-  allExp:any; 
+  allExp:any;
+  experienceId:any=''
  
   constructor(private adminService : AdminService) {
    
@@ -35,6 +36,7 @@ export class AllExperiencesComponent implements OnInit {
       this.title = this.list.title;
 
       
+      this.experienceId= this.list.experienceId; 
       this.location = this.list.location;
        
       this.isValid=this.list.isValid; 
@@ -54,18 +56,23 @@ export class AllExperiencesComponent implements OnInit {
   getAllM(){
     this.allExp=this.adminService.GetAllExperiences();
      }
-  Verify(email:any){
+  Verify(id:any){
   
-    this.adminService.VerifyHosts(email).subscribe(host=>{
+    this.adminService.VerifyExperience(id).subscribe(host=>{
       this.getAllM();
       location.reload();
     
     })
     }
+    delete(id:any){
+      console.log("id"+ id);
+      this.adminService.DeleteExperience(id).subscribe(host=>{
+        this.getAllM();
+        location.reload();
+    })}
+    NotVerify(id:any){
     
-    NotVerify(email:any){
-    
-      this.adminService.NotVerifyHosts(email).subscribe(host=>{
+      this.adminService.NotVerifyExperience(id).subscribe(host=>{
         this.getAllM();
         location.reload();
       

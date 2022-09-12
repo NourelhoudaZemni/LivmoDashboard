@@ -85,7 +85,13 @@ allHosts:any;
   getAllHosts(){
     this.allHosts=this.adminService.getHosts();
      }
-  
+     deleteUser(id:any){
+      console.log("id"+ id);
+      this.adminService.deleteUser(id).subscribe(host=>{
+        this.getAllHosts();
+        location.reload();
+    })
+  }
   Verify(email:any){
   
   this.adminService.VerifyHosts(email).subscribe(host=>{
